@@ -31,8 +31,8 @@ class UserManualPlugin extends BasePlugin
 
 	public function addTwigExtension()
 	{
-		Craft::import('plugins.userManual.twigextensions.userManualTwigExtension');
-		return new userManualTwigExtension();
+		Craft::import('plugins.usermanual.twigextensions.UserManualTwigExtension');
+		return new UserManualTwigExtension();
 	}
 
 	public function registerCpRoutes() {
