@@ -22,6 +22,7 @@ Craft User Manual allows developers (or even content editors) to provide CMS doc
 This plugin was inspired by the team over at [70kft](http://70kft.com/) for their work on [Craft-Help](https://github.com/70kft/craft-help). While their plugin is definitely more flexible in terms of writing custom markdown in separate files, we wanted to create something that would make it easier for anyone to edit documentation without making any changes to the server. This works particularly well for larger projects where more than one person (especially non-devs) are writing documentation for how to use the CMS.
 
 ## Releases
+* **1.0.1** - Adding support for plugin custom icons in Craft 2.5
 * **1.0.0** - Initital release of Craft User Manual.
 
 We hope this plugin is useful, and we'd love to hear any suggestions or issues you may have. [@erskinerob](https://twitter.com/erskinerob).
