@@ -59,7 +59,7 @@ class UserManualPlugin extends BasePlugin
 		foreach(craft()->sections->getAllSections() as $section){
 			$options[] = [
 				'label' => $section['name'],
-				'value' => $section['handle']
+				'value' => $section['id']
 			];
 		}
 

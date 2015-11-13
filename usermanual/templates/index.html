@@ -6,7 +6,7 @@
 
 {% set sidebar %}
   <nav>
-  	{% set help = craft.entries.section(channelSelected) %}
+  	{% set help = craft.entries.sectionId(channelSelected) %}
 	<ul>
 	    {% nav page in help %}
 	        <li>
