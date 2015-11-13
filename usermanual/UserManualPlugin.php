@@ -6,7 +6,10 @@ class UserManualPlugin extends BasePlugin
 
 	function getName()
 	{
-		return Craft::t('User Manual');
+		$pluginName         = Craft::t('User Manual');
+		$pluginNameOverride = $this->getSettings()->pluginNameOverride;
+
+		return ($pluginNameOverride) ? $pluginNameOverride : $pluginName;
 	}
 
 	function getVersion()
@@ -41,13 +44,13 @@ class UserManualPlugin extends BasePlugin
 	    );
 	  }
 
-
-    protected function defineSettings()
-    {
-		return array(
-            'channels' => array(AttributeType::Mixed, 'default' => ""),
-        );
-    }
+	protected function defineSettings() {
+			return array(
+					'pluginNameOverride'     => AttributeType::String,
+					'templateOverride'       => AttributeType::String,
+					'channels' 							 => array(AttributeType::Mixed, 'default' => ''),
+		);
+	}
 
 	public function getSettingsHtml(){
 

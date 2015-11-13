@@ -1,12 +1,32 @@
 {% import "_includes/forms" as forms %}
-<p>Select which Craft section should be used as the "User Manual" section:</p>
-{{ forms.select({
-        label: "My Setting"|t,
-        id: 'channels',
-        name: 'channels',
-        instructions: "Input your setting"|t,
-        value: settings.channels,
-        options: options,
-        autofocus: true
-    }) 
+
+{{ forms.textField({
+  label: "Plugin Name"|t,
+  id: 'pluginNameOverride',
+  name: 'pluginNameOverride',
+  instructions: "Intuitive, human-readable plugin name for the end user."|t,
+  value: settings.pluginNameOverride,
+  autofocus: true,
+  first: true,
+  errors: ''
+}) }}
+
+{{ forms.selectField({
+    label: "Section"|t,
+    id: 'channels',
+    name: 'channels',
+    instructions: 'Select which Craft section should be used as the "User Manual" section'|t,
+    value: settings.channels,
+    options: options,
+  })
+}}
+
+{{ forms.textField({
+    label: "Template Override"|t,
+    id: 'templateOverride',
+    name: 'templateOverride',
+    instructions: "For more control over the output, you may optionally override the default template."|t,
+    value: settings.templateOverride,
+    errors: ''
+  })
 }}
