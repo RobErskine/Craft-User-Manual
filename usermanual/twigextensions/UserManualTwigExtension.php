@@ -41,11 +41,13 @@ class UserManualTwigExtension extends Twig_Extension
       $firstCriteria->sectionId = $sectionId;
       $firstCriteria->limit = 1;
       $firstEntry = $firstCriteria->find();
-      echo($firstEntry[0]['body']);
+
+      return $firstEntry[0]['body'];
     }
+
   // if there is a defined page, load that page's body
     else{
-      echo($entry[0]['body']);
+      return $entry[0]['body'];
     }
   }
 }
