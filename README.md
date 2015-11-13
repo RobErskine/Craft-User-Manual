@@ -7,9 +7,9 @@ Craft User Manual allows developers (or even content editors) to provide CMS doc
 ---
 
 ## Installation
-1. Copy the included **UserManual** folder into craft/plugins.
+1. Copy the included **usermanual** folder into craft/plugins.
 2. Navigate to Plugins in the Craft CP.
-3. Click the Install button in the row for the **UserManual** plugin.
+3. Click the Install button in the row for the **User Manual** plugin.
 4. Select the section the plugin should use as the **User Manual** page in the CP.
 5. Click the **User Manual** link in the CP nav.
 
