@@ -50,8 +50,8 @@ class UserManualPlugin extends BasePlugin
     {
         return [
 	        'pluginNameOverride' => AttributeType::String,
-	        'templateOverride' => AttributeType::String,
-	        'section' => [AttributeType::Mixed, 'default' => ''],
+	        'templateOverride' => AttributeType::Template,
+	        'section' => AttributeType::Number,
         ];
     }
 
@@ -82,5 +82,23 @@ class UserManualPlugin extends BasePlugin
     public function onAfterInstall()
     {
         craft()->request->redirect(UrlHelper::getCpUrl('settings/plugins/usermanual/'));
+    }
+
+    public function getSettings()
+    {
+        $settings = parent::getSettings();
+        foreach ($settings as $name => $value) {
+            $configValue = craft()->config->get($name, 'usermanual');
+            $settings->$name = is_null($configValue) ? $value : $configValue;
+        }
+
+        // Allow handles from config
+        if (!is_numeric($settings->section)) {
+            $section = craft()->sections->getSectionByHandle('homepage');
+            if ($section) {
+                $settings->section = $section->id;
+            }
+        }
+        return $settings;
     }
 }
