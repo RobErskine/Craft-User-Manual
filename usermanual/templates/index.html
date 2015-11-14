@@ -1,7 +1,7 @@
 {% extends "_layouts/cp" %}
 
 {% set channelSelected = (craft.userManual.settings.channels is defined) ? craft.userManual.settings.channels : "Homepage" %}
-{% set title = "User Manual"|t %}
+{% set title = craft.userManual.name|t %}
 
 {% set sidebar %}
   <nav>
