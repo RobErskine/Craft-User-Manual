@@ -58,11 +58,14 @@ class UserManualPlugin extends BasePlugin
     public function getSettingsHtml()
     {
         $options = [[
-            'label' => 'Please select',
+            'label' => '',
             'value' => '',
         ]];
 
         foreach (craft()->sections->getAllSections() as $section) {
+            if (!$section->hasUrls) {
+                continue;
+            }
             $options[] = [
                 'label' => $section['name'],
                 'value' => $section['id'],
