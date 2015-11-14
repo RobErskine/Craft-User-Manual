@@ -1,4 +1,7 @@
-{% if entry.body is defined %}
+{# Using bracket notation for an accurate test, due to
+   a Twig bug: http://craftcms.stackexchange.com/questions/2116/twig-is-defined-always-returning-true/2117#2117 #}
+
+{% if entry['body'] is defined %}
     {{ entry.body }}
 {% else %}
     <p>

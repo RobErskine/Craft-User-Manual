@@ -51,7 +51,7 @@ class UserManualPlugin extends BasePlugin
         return [
 	        'pluginNameOverride' => AttributeType::String,
 	        'templateOverride' => AttributeType::String,
-	        'channels' => [AttributeType::Mixed, 'default' => ''],
+	        'section' => [AttributeType::Mixed, 'default' => ''],
         ];
     }
 

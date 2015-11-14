@@ -27,7 +27,7 @@ class UserManualTwigExtension extends Twig_Extension
         $settings = craft()->plugins->getPlugin('usermanual')->getSettings();
         $segments = craft()->request->segments;
         $segment = end($segments);
-        $sectionId = $settings->channels;
+        $sectionId = $settings->section;
 
         $criteria = craft()->elements->getCriteria(ElementType::Entry);
         $criteria->sectionId = $sectionId;

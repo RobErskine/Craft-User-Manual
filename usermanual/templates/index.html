@@ -1,11 +1,11 @@
 {% extends "_layouts/cp" %}
 
-{% set channelSelected = (craft.userManual.settings.channels is defined) ? craft.userManual.settings.channels : "Homepage" %}
+{% set sectionSelected = (craft.userManual.settings.section is defined) ? craft.userManual.settings.section : "Homepage" %}
 {% set title = craft.userManual.name|t %}
 
 {% set sidebar %}
   <nav>
-  	{% set help = craft.entries.sectionId(channelSelected) %}
+  	{% set help = craft.entries.sectionId(sectionSelected) %}
 	<ul>
         {% nav page in help %}
             {% set active = page.slug == craft.request.lastSegment or loop.first and craft.request.lastSegment == 'usermanual' %}
@@ -28,6 +28,6 @@
 {% set content %}
     {% includeCssResource('usermanual/css/help.css') %}
 	<div id="user-manual">
-		{{ getHelpDocument(channelSelected)|raw }}
+		{{ getHelpDocument(sectionSelected)|raw }}
 	</div>
 {% endset %}
