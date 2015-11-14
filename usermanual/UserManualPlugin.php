@@ -75,6 +75,7 @@ class UserManualPlugin extends BasePlugin
         return craft()->templates->render('usermanual/settings', [
             'settings' => $this->getSettings(),
             'options' => $options,
+            'siteTemplatesPath' => craft()->path->getSiteTemplatesPath(),
         ]);
     }
 

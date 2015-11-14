@@ -20,11 +20,16 @@
     options: options,
 })}}
 
+{% set instructions %}
+For more control over the output, you may optionally override the default template.<br>
+Path is relative to <code>{{ siteTemplatesPath }}</code>.
+{% endset %}
 {{ forms.textField({
     label: "Template Override"|t,
     id: 'templateOverride',
     name: 'templateOverride',
-    instructions: "For more control over the output, you may optionally override the default template."|t,
+    placeholder: '_includes/userManualContent.twig',
+    instructions: instructions|raw,
     value: settings.templateOverride,
     errors: ''
 })}}
