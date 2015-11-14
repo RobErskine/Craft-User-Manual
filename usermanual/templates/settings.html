@@ -1,15 +1,15 @@
 {% import "_includes/forms" as forms %}
 
 {{ forms.textField({
-  label: "Plugin Name"|t,
-  id: 'pluginNameOverride',
-  name: 'pluginNameOverride',
-  instructions: "Intuitive, human-readable plugin name for the end user."|t,
-  value: settings.pluginNameOverride,
-  autofocus: true,
-  first: true,
-  errors: ''
-}) }}
+    label: "Plugin Name"|t,
+    id: 'pluginNameOverride',
+    name: 'pluginNameOverride',
+    instructions: "Intuitive, human-readable plugin name for the end user."|t,
+    value: settings.pluginNameOverride,
+    autofocus: true,
+    first: true,
+    errors: ''
+})}}
 
 {{ forms.selectField({
     label: "Section"|t,
@@ -18,8 +18,7 @@
     instructions: 'Select which Craft section should be used as the "User Manual" section'|t,
     value: settings.channels,
     options: options,
-  })
-}}
+})}}
 
 {{ forms.textField({
     label: "Template Override"|t,
@@ -28,5 +27,4 @@
     instructions: "For more control over the output, you may optionally override the default template."|t,
     value: settings.templateOverride,
     errors: ''
-  })
-}}
+})}}

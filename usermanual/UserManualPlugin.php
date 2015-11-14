@@ -1,80 +1,82 @@
 <?php
+
 namespace Craft;
 
 class UserManualPlugin extends BasePlugin
 {
+    public function getName()
+    {
+        $pluginName = Craft::t('User Manual');
+        $pluginNameOverride = $this->getSettings()->pluginNameOverride;
 
-	function getName()
-	{
-		$pluginName         = Craft::t('User Manual');
-		$pluginNameOverride = $this->getSettings()->pluginNameOverride;
+        return ($pluginNameOverride) ? $pluginNameOverride : $pluginName;
+    }
 
-		return ($pluginNameOverride) ? $pluginNameOverride : $pluginName;
-	}
+    public function getVersion()
+    {
+        return '1.0.0';
+    }
 
-	function getVersion()
-	{
-		return '1.0.0';
-	}
+    public function getDeveloper()
+    {
+        return 'Hill Holliday';
+    }
 
-	function getDeveloper()
-	{
-		return 'Hill Holliday';
-	}
+    public function getDeveloperUrl()
+    {
+        return 'http://hhcc.com';
+    }
 
-	function getDeveloperUrl()
-	{
-		return 'http://hhcc.com';
-	}
-
-	function hasCpSection()
+    public function hasCpSection()
     {
         return true;
     }
 
-	public function addTwigExtension()
-	{
-		Craft::import('plugins.usermanual.twigextensions.UserManualTwigExtension');
-		return new UserManualTwigExtension();
-	}
+    public function addTwigExtension()
+    {
+        Craft::import('plugins.usermanual.twigextensions.UserManualTwigExtension');
 
-	public function registerCpRoutes() {
-	    return array(
-	      'usermanual/(?P<userManualPath>[a-zA-Z0-9\-\_\/]+)' => 'usermanual/index'
-	    );
-	  }
+        return new UserManualTwigExtension();
+    }
 
-	protected function defineSettings() {
-			return array(
-					'pluginNameOverride'     => AttributeType::String,
-					'templateOverride'       => AttributeType::String,
-					'channels' 							 => array(AttributeType::Mixed, 'default' => ''),
-		);
-	}
+    public function registerCpRoutes()
+    {
+        return [
+    		'usermanual/(?P<userManualPath>[a-zA-Z0-9\-\_\/]+)' => 'usermanual/index',
+        ];
+    }
 
-	public function getSettingsHtml(){
+    protected function defineSettings()
+    {
+        return [
+	        'pluginNameOverride' => AttributeType::String,
+	        'templateOverride' => AttributeType::String,
+	        'channels' => [AttributeType::Mixed, 'default' => ''],
+        ];
+    }
 
-		$options= [[
-			'label' => 'Please select',
-			'value' => ''
-		]];
+    public function getSettingsHtml()
+    {
+        $options = [[
+            'label' => 'Please select',
+            'value' => '',
+        ]];
 
-		foreach(craft()->sections->getAllSections() as $section){
-			$options[] = [
-				'label' => $section['name'],
-				'value' => $section['id']
-			];
-		}
+        foreach (craft()->sections->getAllSections() as $section) {
+            $options[] = [
+                'label' => $section['name'],
+                'value' => $section['id'],
+            ];
+        }
 
-		return craft()->templates->render('UserManual/settings',array(
-			'settings' => $this->getSettings(),
-			'options' => $options
-		));
-	}
+        return craft()->templates->render('usermanual/settings', [
+            'settings' => $this->getSettings(),
+            'options' => $options,
+        ]);
+    }
 
     public function onAfterInstall()
     {
         craft()->request->redirect(UrlHelper::getCpUrl('settings/plugins/usermanual/'));
     }
-
 }

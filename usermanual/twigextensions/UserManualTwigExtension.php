@@ -43,7 +43,6 @@ class UserManualTwigExtension extends Twig_Extension
         if (!$sectionId || !$entry) {
             craft()->request->redirect(UrlHelper::getCpUrl('settings/plugins/usermanual/'));
         } else {
-
             if ($settings->templateOverride) {
                 $newPath = craft()->path->getSiteTemplatesPath();
                 $template = $settings->templateOverride;
