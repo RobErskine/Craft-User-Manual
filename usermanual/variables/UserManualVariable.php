@@ -1,12 +1,18 @@
-<?php 
+<?php
+
 namespace Craft;
 
 class UserManualVariable
 {
-	public function getSettings(){
-		return craft()->userManual_settings->getChannelSetting();
-	}
-	public function getCpUrl(){
-		return craft()->userManual_settings->getCp();
-	}
+    public function getSettings()
+    {
+        return craft()->plugins->getPlugin('usermanual')->getSettings();
+    }
+
+    public function getName()
+    {
+        $plugin = craft()->plugins->getPlugin('usermanual');
+
+        return $plugin->getName();
+    }
 }

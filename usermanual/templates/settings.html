@@ -1,12 +1,58 @@
 {% import "_includes/forms" as forms %}
-<p>Select which Craft section should be used as the "User Manual" section:</p>
-{{ forms.select({
-        label: "My Setting"|t,
-        id: 'channels',
-        name: 'channels',
-        instructions: "Input your setting"|t,
-        value: settings.channels,
-        options: options,
-        autofocus: true
-    }) 
-}}
+
+{% macro configWarning(setting, file) -%}
+	{{ "This is being overridden by the {setting} config setting."|t({
+		setting: '<a href="https://github.com/hillholliday/Craft-User-Manual/config-settings#'~setting~'" target="_blank">'~setting~'</a>'
+	})|raw }}
+{%- endmacro %}
+
+{% from _self import configWarning %}
+
+{% set configOverride = craft.config.get('pluginNameOverride', 'usermanual') is not null %}
+{{ forms.textField({
+    label: "Plugin Name"|t,
+    id: 'pluginNameOverride',
+    name: 'pluginNameOverride',
+    instructions: "Intuitive, human-readable plugin name for the end user."|t,
+    value: settings.pluginNameOverride,
+    autofocus: true,
+    first: true,
+    errors: '',
+    warning: configOverride ? configWarning('pluginNameOverride'),
+	disabled: configOverride,
+	readonly: configOverride,
+})}}
+
+{% set configOverride = craft.config.get('section', 'usermanual') is not null %}
+{% set inputMacro = configOverride ? 'textField' : 'selectField' %}
+{% set opts = {
+	label: "User Manual Section"|t,
+	id: 'section',
+	name: 'section',
+	instructions: 'Entries in this section must have associated urls.'|t,
+	value: settings.section,
+	options: options,
+	warning: configOverride ? configWarning('pluginNameOverride'),
+	disabled: configOverride,
+	readonly: configOverride,
+} %}
+{{ configOverride ? forms.textField(opts) : forms.selectField(opts) }}
+
+{% set instructions %}
+For more control over the output, you may optionally override the default template.<br>
+Path is relative to <code>{{ siteTemplatesPath }}</code>.
+{% endset %}
+{% set configOverride = craft.config.get('templateOverride', 'usermanual') is not null %}
+
+{{ forms.textField({
+    label: "Template Override"|t,
+    id: 'templateOverride',
+    name: 'templateOverride',
+    placeholder: '_includes/userManualContent.twig',
+    instructions: instructions|raw,
+    value: settings.templateOverride,
+    errors: '',
+	warning: configOverride ? configWarning('pluginNameOverride'),
+	disabled: configOverride,
+	readonly: configOverride,
+})}}

@@ -1,0 +1,12 @@
+{# Using bracket notation for an accurate test, due to
+   a Twig bug: http://craftcms.stackexchange.com/questions/2116/twig-is-defined-always-returning-true/2117#2117 #}
+
+{% if entry['body'] is defined %}
+    {{ entry.body }}
+{% else %}
+    <p>
+        <a href="{{ url('settings/fields/new') }}">Create a field</a> with the handle of <code>body</code>
+        <b>or</b>
+        use the <a href="{{ url('settings/plugins/usermanual#settings-templateOverride-field') }}">Template Override</a> option to define your own fields.
+    </p>
+{% endif %}

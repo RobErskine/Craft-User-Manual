@@ -1,20 +1,23 @@
 {% extends "_layouts/cp" %}
 
-
-{% set channelSelected = (craft.userManual.getSettings() is defined) ? craft.userManual.getSettings() : "Homepage" %}
-{% set title = "User Manual"|t %}
+{% set sectionSelected = (craft.userManual.settings.section is defined) ? craft.userManual.settings.section : "Homepage" %}
+{% set title = craft.userManual.name|t %}
 
 {% set sidebar %}
   <nav>
-  	{% set help = craft.entries.section(channelSelected) %}
+  	{% set help = craft.entries.sectionId(sectionSelected) %}
 	<ul>
-	    {% nav page in help %}
+        {% nav page in help %}
+            {% set active = page.slug == craft.request.lastSegment or loop.first and craft.request.lastSegment == 'usermanual' %}
 	        <li>
-	            <a {% if page.slug == craft.request.lastSegment or loop.first and craft.request.lastSegment == 'usermanual' %}class="sel"{% endif %} href="/{{craft.userManual.getCpUrl()}}/usermanual/{{page.uri}}">{{page.title}}</a>
+	            <a {% if active %}class="sel"{% endif %}
+                href="{{ url('usermanual/' ~ page.uri) }}">
+                {{page.title}}
+              </a>
 	            {% ifchildren %}
-	                <ul>
-	                    {% children %}
-	                </ul>
+                  <ul>
+                      {% children %}
+                  </ul>
 	            {% endifchildren %}
 	        </li>
 	    {% endnav %}
@@ -23,8 +26,8 @@
 {% endset %}
 
 {% set content %}
-{% includeCssResource('usermanual/css/help.css') %}
+    {% includeCssResource('usermanual/css/help.css') %}
 	<div id="user-manual">
-		{{ getHelpDocument(channelSelected) }}
+		{{ getHelpDocument(sectionSelected)|raw }}
 	</div>
 {% endset %}
