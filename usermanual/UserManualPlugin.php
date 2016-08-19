@@ -42,7 +42,7 @@ class UserManualPlugin extends BasePlugin
     public function registerCpRoutes()
     {
         return [
-    		'usermanual/(?P<userManualPath>[a-zA-Z0-9\-\_\/]+)' => 'usermanual/index',
+    		'usermanual/(?P<userManualPath>[a-zéñåA-Z0-9\-\_\/]+)' => 'usermanual/index',
         ];
     }
 
