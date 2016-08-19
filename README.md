@@ -17,7 +17,7 @@ Craft User Manual allows developers (or even content editors) to provide CMS doc
 
 ## Some notes
 * The plugin currently only pulls in the `body` field from each entry in the selected section, unless you're using a template override.
-* While the **User Manual** section works best with `Structures`, you can certainly get away with using a one-off `Single` (I'm looking at you _Craft Personal_ users!).
+* While the **User Manual** section works best with `Structures`, you can certainly get away with using a one-off `Single`.
 * If you're running _Craft Client_ or _Craft Pro_ make sure your content editors don't have permission to edit whatever section you've selected to use as your **User Manual**
 * Only sections with entry URLs may be used as your **User Manual** section.
 * All settings may be optionally configured using a [config file](http://buildwithcraft.com/docs/plugins/plugin-settings#config-file). See [`config.php`](https://github.com/hillholliday/Craft-User-Manual/blob/master/usermanual/config.php) for possible values.
