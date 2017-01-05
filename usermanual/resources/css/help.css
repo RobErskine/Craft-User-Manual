@@ -129,12 +129,14 @@
   border: solid 1px rgb(227,227,227);
 }
 
-#user-manual pre {
+#user-manual pre,
+#user-manual code{
   margin: 0.5em 0;
   border: 1px solid hsl(212, 2%, 90%);
   padding: 14px;
   word-wrap: normal;
   overflow: auto;
+  font-family:'Source Code Pro', 'Menlo', monospace;
 }
 
 #user-manual pre .token,
