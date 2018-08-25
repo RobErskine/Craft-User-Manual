@@ -1,5 +1,17 @@
-/*
- * lifted from craft-help from the super smart devs over at 70kft https://github.com/70kft/craft-help 
+/**
+ * usermanual plugin for Craft CMS
+ *
+ * usermanual CSS
+ *
+ * @author    Rob Erskine
+ * @copyright Copyright (c) 2018 Rob Erskine
+ * @link      https://twitter.com/erskinerob
+ * @package   Usermanual
+ * @since     2.0.0
+ */
+
+ /*
+ * lifted from craft-help from the super smart devs over at 70kft https://github.com/70kft/craft-help
  */
 
 #user-manual {

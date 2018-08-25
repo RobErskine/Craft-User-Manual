@@ -1,0 +1,37 @@
+
+{% extends "_layouts/cp" %}
+
+{% do view.registerAssetBundle("hillholliday\\usermanual\\assetbundles\\usermanual\\UserManualAsset") %}
+
+{% set sectionSelected = (craft.userManual.settings.section is defined)
+  ? craft.userManual.settings.section
+  : "Homepage" %}
+
+{% set title = craft.userManual.name|t %}
+{% set sidebar %}
+  <nav>
+    {% set help = craft.entries.sectionId(sectionSelected) %}
+  <ul>
+        {% nav page in help %}
+            {% set active = page.slug == craft.request.lastSegment or loop.first and craft.request.lastSegment == 'usermanual' %}
+          <li>
+              <a {% if active %}class="sel"{% endif %}
+                href="{{ url('usermanual/' ~ page.uri) }}">
+                {{page.title}}
+              </a>
+              {% ifchildren %}
+                  <ul>
+                      {% children %}
+                  </ul>
+              {% endifchildren %}
+          </li>
+      {% endnav %}
+  </ul>
+  </nav>
+{% endset %}
+
+{% set content %}
+  <div id="user-manual">
+    {{ getHelpDocument(sectionSelected)|raw }}
+  </div>
+{% endset %}
