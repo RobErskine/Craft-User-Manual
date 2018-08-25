@@ -27,16 +27,17 @@ class UserManualVariable
     // Public Methods
     // =========================================================================
 
-    /**
-     * @param null $optional
-     * @return string
-     */
-    public function exampleVariable($optional = null)
+    public function getName()
     {
-        $result = "And away we go to the Twig template...";
-        if ($optional) {
-            $result = "I'm feeling optional today...";
-        }
-        return $result;
+        $name = UserManual::$plugin->getName();
+
+        return $name;
+    }
+
+    public function getSettings()
+    {
+        $settings = UserManual::$plugin->getSettings();
+
+        return $settings;
     }
 }
