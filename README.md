@@ -2,7 +2,7 @@
 
 Craft User Manual allows developers (or even content editors) to provide CMS documentation using Craft's built-in sections (singles, channels, or structures) to create a "User Manual" or "Help" section directly in the control panel.
 
-![Screenshot](resources/img/screenshot.png)
+![Screenshot](resources/img/screenshot.jpg)
 
 ## Requirements
 
