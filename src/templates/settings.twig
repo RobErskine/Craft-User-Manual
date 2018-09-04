@@ -1,9 +1,24 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * usermanual plugin for Craft CMS 3.x
+ *
+ * usermanual Settings.twig
+ *
+ * @author    Rob Erskine
+ * @copyright Copyright (c) 2018 Rob Erskine
+ * @link      https://twitter.com/erskinerob
+ * @package   Usermanual
+ * @since     2.0.0
+ */
+#}
+
 {% import "_includes/forms" as forms %}
 
 {% macro configWarning(setting, file) -%}
-	{{ "This is being overridden by the {setting} config setting."|t({
-		setting: '<a href="https://github.com/hillholliday/Craft-User-Manual/config-settings#'~setting~'" target="_blank">'~setting~'</a>'
-	})|raw }}
+    {{ "This is being overridden by the {setting} config setting."|t({
+        setting: '<a href="https://github.com/hillholliday/Craft-User-Manual/blob/master/README.md#config-settings-'~setting~'" target="_blank">'~setting~'</a>'
+    })|raw }}
 {%- endmacro %}
 
 {% from _self import configWarning %}
@@ -19,22 +34,22 @@
     first: true,
     errors: '',
     warning: configOverride ? configWarning('pluginNameOverride'),
-	disabled: configOverride,
-	readonly: configOverride,
+    disabled: configOverride,
+    readonly: configOverride,
 })}}
 
 {% set configOverride = craft.config.get('section', 'usermanual') is not null %}
 {% set inputMacro = configOverride ? 'textField' : 'selectField' %}
 {% set opts = {
-	label: "User Manual Section"|t,
-	id: 'section',
-	name: 'section',
-	instructions: 'Entries in this section must have associated urls.'|t,
-	value: settings.section,
-	options: options,
-	warning: configOverride ? configWarning('pluginNameOverride'),
-	disabled: configOverride,
-	readonly: configOverride,
+    label: "User Manual Section"|t,
+    id: 'section',
+    name: 'section',
+    instructions: 'Entries in this section must have associated urls.'|t,
+    value: settings.section,
+    options: options,
+    warning: configOverride ? configWarning('pluginNameOverride'),
+    disabled: configOverride,
+    readonly: configOverride,
 } %}
 {{ configOverride ? forms.textField(opts) : forms.selectField(opts) }}
 
@@ -52,7 +67,7 @@ Path is relative to <code>{{ siteTemplatesPath }}</code>.
     instructions: instructions|raw,
     value: settings.templateOverride,
     errors: '',
-	warning: configOverride ? configWarning('pluginNameOverride'),
-	disabled: configOverride,
-	readonly: configOverride,
+    warning: configOverride ? configWarning('pluginNameOverride'),
+    disabled: configOverride,
+    readonly: configOverride,
 })}}
