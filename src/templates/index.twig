@@ -10,7 +10,7 @@
 {% set title = craft.userManual.name|t %}
 {% set sidebar %}
   <nav>
-    {% set help = craft.entries.sectionId(sectionSelected) %}
+    {% set help = craft.entries.sectionId(sectionSelected).all() %}
     <ul>
       {% nav page in help %}
         {% set active = page.slug == craft.request.lastSegment or loop.first and craft.request.lastSegment == 'usermanual' %}
