@@ -177,10 +177,14 @@ class UserManual extends Plugin
             ];
         }
 
+        // Get override settings from config file.
+        $overrides = Craft::$app->getConfig()->getConfigFromFile(strtolower($this->handle));
+
         return Craft::$app->view->renderTemplate(
             'usermanual/settings',
             [
                 'settings' => $this->getSettings(),
+                'overrides' => array_keys($overrides),
                 'options' => $options,
                 'siteTemplatesPath' => Craft::$app->getPath()->getSiteTemplatesPath(),
             ]
