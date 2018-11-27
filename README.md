@@ -30,7 +30,7 @@ To install the plugin, follow these instructions.
 
 ## Configuration
 
-* All settings may be optionally configured using a [config file](http://buildwithcraft.com/docs/plugins/plugin-settings#config-file). The values, contained in [`config.php`](https://github.com/hillholliday/Craft-User-Manual/blob/master/usermanual/config.php), are described below:
+* All settings may be optionally configured using a [config file](http://buildwithcraft.com/docs/plugins/plugin-settings#config-file). The values, contained in [`config.php`](https://github.com/hillholliday/Craft-User-Manual/blob/master/src/config.php), are described below:
 
 <a id="config-settings-pluginNameOverride"></a>
 ### pluginNameOverride
