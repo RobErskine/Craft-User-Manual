@@ -1,7 +1,7 @@
 
 {% extends "_layouts/cp" %}
 
-{% do view.registerAssetBundle("hillholliday\\usermanual\\assetbundles\\usermanual\\UserManualAsset") %}
+{% do view.registerAssetBundle("hillholliday\\usermanual\\assetbundles\\UserManual\\UserManualAsset") %}
 
 {% set sectionSelected = (craft.userManual.settings.section is defined)
   ? craft.userManual.settings.section
