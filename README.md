@@ -56,13 +56,14 @@ Entries in this section must have associated urls.
 This plugin was inspired by the team over at [70kft](http://70kft.com/) for their work on [Craft-Help](https://github.com/70kft/craft-help). While their plugin is definitely more flexible in terms of writing custom markdown in separate files, we wanted to create something that would make it easier for anyone to edit documentation without making any changes to the server. This works particularly well for larger projects where more than one person (especially non-devs) are writing documentation for how to use the CMS.
 
 ## Releases
-* **2.0.1** - Merging in @mgburns fix for deprecation warnings.
-* **2.0.0** - Merging in @jcdarwin's Craft3 port. Craft3 version of Craft User Manual.
-* **1.1.1** - Adding in RTL language support
-* **1.1.0** - Merging in @timkelty's work which includes template overrides, updated error prompts, and other misc improvements
-* **1.0.1** - Adding support for plugin custom icons in Craft 2.5
+* **2.0.2** - Merging in [@aaronbushnell](https://github.com/aaronbushnell)'s [fix for incorrect reference to asset bundle](https://github.com/hillholliday/Craft-User-Manual/pull/17).
+* **2.0.1** - Merging in [@mgburns](https://github.com/mgburns)' [fix for Craft 3 deprecation warnings](https://github.com/hillholliday/Craft-User-Manual/pull/11).
+* **2.0.0** - Merging in [@jcdarwin](https://github.com/jcdarwin) Craft 3 port. [Craft 3 version of Craft User Manual](https://github.com/hillholliday/Craft-User-Manual/pull/8).
+* **1.1.1** - Adding in RTL language support.
+* **1.1.0** - Merging in [@timkelty](https://github.com/timkelty)'s work which [includes template overrides, updated error prompts, and other misc improvements](https://github.com/hillholliday/Craft-User-Manual/pull/3).
+* **1.0.1** - Adding support for plugin custom icons in Craft 2.5.
 * **1.0.0** - Initital release of Craft User Manual.
 
 We hope this plugin is useful, and we'd love to hear any suggestions or issues you may have. [@erskinerob](https://twitter.com/erskinerob).
 
-Brought to you by [Rob Erskine](https://twitter.com/erskinerob)
+Brought to you by [Rob Erskine](https://twitter.com/erskinerob).
