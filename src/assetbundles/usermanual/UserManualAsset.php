@@ -11,7 +11,7 @@
  * @copyright Copyright (c) 2018 Rob Erskine
  */
 
-namespace hillholliday\usermanual\assetbundles\UserManual;
+namespace hillholliday\usermanual\assetbundles\usermanual;
 
 use Craft;
 use craft\web\AssetBundle;
