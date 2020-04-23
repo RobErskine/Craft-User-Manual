@@ -175,3 +175,21 @@
 .sidebar nav li ul {
   display: block !important;
 }
+
+
+//  style to mange hash tag links
+#sidebar{
+  max-height: calc(100%) !important;
+  height: auto !important;
+  position: static !important;
+}
+
+#content{
+  position: fixed !important;
+  width: calc(100vw - 570px);
+}
+
+
+.peUserManual #user-manual-menu{
+  margin-top: 185px;
+}

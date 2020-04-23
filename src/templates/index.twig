@@ -9,14 +9,14 @@
 
 {% set title = craft.userManual.name|t %}
 {% set sidebar %}
-  <nav>
+  <nav id="user-manual-menu">
     {% set help = craft.entries.sectionId(sectionSelected).all() %}
     <ul>
       {% nav page in help %}
         {% set active = page.slug == craft.app.request.segments|last or loop.first and craft.app.request.segments|last == 'usermanual' %}
-        <li>
+        <li id="{{ page.id }}">
           <a {% if active %}class="sel"{% endif %}
-            href="{{ url('usermanual/' ~ page.uri) }}">
+            href="{{ url('usermanual/' ~ page.uri) }}#{{ page.id }}">
             {{page.title}}
           </a>
           {% ifchildren %}
