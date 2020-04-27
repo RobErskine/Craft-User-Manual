@@ -189,4 +189,6 @@
 
 .pe-user-manual #user-manual-menu{
   margin-top: 185px;
+  max-height: calc(100vh - 212px);
+  overflow-y: scroll;
 }
