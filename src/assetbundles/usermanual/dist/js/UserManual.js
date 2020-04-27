@@ -11,10 +11,9 @@
  */
 
  $('document').ready(function () {
-   //  check if hash tag is availbe and
-   //  get the menu id
+   
    if(window.location.hash.substr(1)){
-     $('body').addClass('peUserManual');
+     $('body').addClass('pe-user-manual');
    }
    else{
      $('#global-header').hide();
