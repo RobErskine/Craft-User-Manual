@@ -43,6 +43,13 @@ class Settings extends Model
      */
     public $section;
 
+    /**
+     * @var boolean
+     */
+    public $enabledSideBar = true;
+
+
+
     // Public Methods
     // =========================================================================
 
@@ -54,6 +61,7 @@ class Settings extends Model
         return [
             [['pluginNameOverride', 'templateOverride'], 'string'],
             ['section', 'number'],
+            ['enabledSideBar', 'boolean']
         ];
     }
 }
