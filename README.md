@@ -46,6 +46,11 @@ Path is relative to ../craft/templates/.
 ### section
 Entries in this section must have associated urls.
 
+### enabledSideBar
+Enables the sidebar on the manual page
+
+Defaults to true.
+
 ## Some notes
 * The plugin currently only pulls in the `body` field from each entry in the selected section, unless you're using a template override.
 * While the **User Manual** section works best with `Structures`, you can certainly get away with using a one-off `Single`.
