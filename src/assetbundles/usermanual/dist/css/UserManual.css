@@ -175,3 +175,20 @@
 .sidebar nav li ul {
   display: block !important;
 }
+
+#sidebar{
+  max-height: calc(100%) !important;
+  height: auto !important;
+  position: static !important;
+}
+
+#content{
+  position: fixed !important;
+  width: calc(100vw - 570px);
+}
+
+.pe-user-manual #user-manual-menu{
+  margin-top: 185px;
+  max-height: calc(100vh - 212px);
+  overflow-y: scroll;
+}
