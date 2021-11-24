@@ -1,5 +1,8 @@
 # Release Notes for Craft User Manual
 
+## 2.1.1 - 2021-11-24
+- Removing fixed positioning from #content within the user manual [PR #24](https://github.com/hillholliday/Craft-User-Manual/pull/24)
+
 ## 2.1.0 - 2021-11-10
 - Merging PR from JorgeAnzalo for an optional sidebar [PR #23](https://github.com/hillholliday/Craft-User-Manual/pull/23)
 - Merging PR from for a hashed based navigation for long navbars [PR #19](https://github.com/hillholliday/Craft-User-Manual/pull/19)
