@@ -183,7 +183,6 @@
 }
 
 #content{
-  position: fixed !important;
   width: calc(100vw - 570px);
 }
 
