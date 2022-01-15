@@ -2,7 +2,7 @@
     "name": "hillholliday/craft-user-manual",
     "description": "Craft User Manual allows developers (or even content editors) to provide CMS documentation using Craft's built-in sections (singles, channels, or structures) to create a `User Manual` or `Help` section directly in the control panel.",
     "type": "craft-plugin",
-    "version": "2.1.1",
+    "version": "2.1.2",
     "keywords": [
         "craft",
         "cms",
