@@ -36,5 +36,16 @@
         "hasCpSection": true,
         "changelogUrl": "https://raw.githubusercontent.com/roberskine/Craft-User-Manual/master/CHANGELOG.md",
         "class": "hillholliday\\usermanual\\UserManual"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "craftcms/rector": "dev-main"
+    },
+    "config": {
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true,
+            "craftcms/plugin-installer": true
+        }
     }
 }

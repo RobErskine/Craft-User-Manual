@@ -28,7 +28,7 @@ use Twig_SimpleFilter;
  * @package   Usermanual
  * @since     2.0.0
  */
-class UserManualTwigExtension extends Twig_Extension
+class UserManualTwigExtension extends \Twig\Extension\AbstractExtension
 {
     // Public Methods
     // =========================================================================
@@ -47,7 +47,7 @@ class UserManualTwigExtension extends Twig_Extension
     public function getFunctions(): array
     {
         return [
-            new Twig_SimpleFunction('getHelpDocument', [$this, 'getHelpDocument']),
+            new \Twig\TwigFunction('getHelpDocument', [$this, 'getHelpDocument']),
         ];
     }
 

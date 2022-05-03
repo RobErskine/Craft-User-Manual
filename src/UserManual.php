@@ -52,7 +52,7 @@ class UserManual extends Plugin
     /**
      * @var string
      */
-    public $schemaVersion = '2.0.1';
+    public string $schemaVersion = '2.0.1';
 
     // Public Methods
     // =========================================================================
@@ -145,7 +145,7 @@ class UserManual extends Plugin
     /**
      * @inheritdoc
      */
-    protected function createSettingsModel()
+    protected function createSettingsModel(): ?\craft\base\Model
     {
         return new Settings();
     }
@@ -153,7 +153,7 @@ class UserManual extends Plugin
     /**
      * @inheritdoc
      */
-    protected function settingsHtml(): string
+    protected function settingsHtml(): ?string
     {
         $options = [[
             'label' => '',
@@ -194,7 +194,7 @@ class UserManual extends Plugin
     /**
      * @inheritdoc
      */
-    public function getSettings()
+    public function getSettings(): ?\craft\base\Model
     {
         $settings = parent::getSettings();
         $config = Craft::$app->config->getConfigFromFile('usermanual');
