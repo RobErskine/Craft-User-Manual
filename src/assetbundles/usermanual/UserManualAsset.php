@@ -1,7 +1,7 @@
 <?php
 
 /**
- * usermanual plugin for Craft CMS 3.x
+ * usermanual plugin for Craft CMS 4.x
  *
  * Craft User Manual allows developers (or even content editors) to provide CMS
  * documentation using Craft's built-in sections (singles, channels, or structures)
@@ -11,7 +11,7 @@
  * @copyright Copyright (c) 2018 Rob Erskine
  */
 
-namespace hillholliday\usermanual\assetbundles\usermanual;
+namespace roberskine\usermanual\assetbundles\usermanual;
 
 use Craft;
 use craft\web\AssetBundle;
@@ -32,7 +32,7 @@ class UserManualAsset extends AssetBundle
      */
     public function init()
     {
-        $this->sourcePath = "@hillholliday/usermanual/assetbundles/usermanual/dist";
+        $this->sourcePath = "@roberskine/usermanual/assetbundles/usermanual/dist";
 
         $this->depends = [
             CpAsset::class,

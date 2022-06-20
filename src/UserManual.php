@@ -11,13 +11,14 @@
  * @copyright Copyright (c) 2018 Rob Erskine
  */
 
-namespace hillholliday\usermanual;
+namespace roberskine\usermanual;
 
-use hillholliday\usermanual\variables\UserManualVariable;
-use hillholliday\usermanual\twigextensions\UserManualTwigExtension;
-use hillholliday\usermanual\models\Settings;
+use roberskine\usermanual\variables\UserManualVariable;
+use roberskine\usermanual\twigextensions\UserManualTwigExtension;
+use roberskine\usermanual\models\Settings;
 
 use Craft;
+use craft\base\Model;
 use craft\base\Plugin;
 use craft\services\Plugins;
 use craft\events\PluginEvent;
@@ -44,7 +45,7 @@ class UserManual extends Plugin
     /**
      * @var UserManual
      */
-    public static $plugin;
+    public static UserManual $plugin;
 
     // Public Properties
     // =========================================================================
@@ -52,7 +53,7 @@ class UserManual extends Plugin
     /**
      * @var string
      */
-    public $schemaVersion = '2.0.1';
+    public string $schemaVersion = '4.0.0';
 
     // Public Methods
     // =========================================================================
@@ -111,7 +112,7 @@ class UserManual extends Plugin
      *
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         $pluginName = Craft::t('usermanual', 'User Manual');
         $pluginNameOverride = $this->getSettings()->pluginNameOverride;
@@ -145,7 +146,7 @@ class UserManual extends Plugin
     /**
      * @inheritdoc
      */
-    protected function createSettingsModel()
+    protected function createSettingsModel(): ?Model
     {
         return new Settings();
     }
@@ -153,7 +154,7 @@ class UserManual extends Plugin
     /**
      * @inheritdoc
      */
-    protected function settingsHtml(): string
+    protected function settingsHtml(): ?string
     {
         $options = [[
             'label' => '',
@@ -194,7 +195,7 @@ class UserManual extends Plugin
     /**
      * @inheritdoc
      */
-    public function getSettings()
+    public function getSettings(): ?Model
     {
         $settings = parent::getSettings();
         $config = Craft::$app->config->getConfigFromFile('usermanual');
