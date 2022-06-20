@@ -1,5 +1,8 @@
 # Release Notes for Craft User Manual
 
+## 4.0.1 - 2022-06-20
+- Updating name in Composer so it will update on Packagist
+
 ## 4.0.0 - 2022-06-20
 - Craft 4 support. Thanks to Chris DuCharme for migrating. [PR #29](https://github.com/roberskine/Craft-User-Manual/pull/29)
 
