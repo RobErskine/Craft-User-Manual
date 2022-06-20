@@ -11,11 +11,11 @@
  * @copyright Copyright (c) 2018 Rob Erskine
  */
 
-namespace hillholliday\usermanual;
+namespace roberskine\usermanual;
 
-use hillholliday\usermanual\variables\UserManualVariable;
-use hillholliday\usermanual\twigextensions\UserManualTwigExtension;
-use hillholliday\usermanual\models\Settings;
+use roberskine\usermanual\variables\UserManualVariable;
+use roberskine\usermanual\twigextensions\UserManualTwigExtension;
+use roberskine\usermanual\models\Settings;
 
 use Craft;
 use craft\base\Model;

@@ -27,7 +27,7 @@
     },
     "autoload": {
         "psr-4": {
-            "hillholliday\\usermanual\\": "src/"
+            "roberskine\\usermanual\\": "src/"
         }
     },
     "extra": {
@@ -36,7 +36,7 @@
         "hasCpSettings": true,
         "hasCpSection": true,
         "changelogUrl": "https://raw.githubusercontent.com/roberskine/Craft-User-Manual/master/CHANGELOG.md",
-        "class": "hillholliday\\usermanual\\UserManual"
+        "class": "roberskine\\usermanual\\UserManual"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
