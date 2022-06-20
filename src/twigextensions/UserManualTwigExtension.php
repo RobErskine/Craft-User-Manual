@@ -19,16 +19,20 @@ use Craft;
 use craft\elements\Entry;
 use craft\helpers\UrlHelper;
 use craft\web\View;
-use Twig_Extension;
-use Twig_SimpleFunction;
-use Twig_SimpleFilter;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
+use yii\base\Exception;
+
 
 /**
  * @author    Rob Erskine
  * @package   Usermanual
  * @since     2.0.0
  */
-class UserManualTwigExtension extends \Twig\Extension\AbstractExtension
+class UserManualTwigExtension extends AbstractExtension
 {
     // Public Methods
     // =========================================================================
@@ -47,7 +51,7 @@ class UserManualTwigExtension extends \Twig\Extension\AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new \Twig\TwigFunction('getHelpDocument', [$this, 'getHelpDocument']),
+            new TwigFunction('getHelpDocument', [$this, 'getHelpDocument']),
         ];
     }
 
@@ -55,8 +59,12 @@ class UserManualTwigExtension extends \Twig\Extension\AbstractExtension
      * Render an entry in the given section using the nominated template
      *
      * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     * @throws Exception
      */
-    public function getHelpDocument()
+    public function getHelpDocument(): string
     {
         $settings = UserManual::$plugin->getSettings();
         $query = Entry::find();

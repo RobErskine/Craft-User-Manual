@@ -1,7 +1,7 @@
 <?php
 
 /**
- * usermanual plugin for Craft CMS 3.x
+ * usermanual plugin for Craft CMS 4.x
  *
  * Craft User Manual allows developers (or even content editors) to provide CMS
  * documentation using Craft's built-in sections (singles, channels, or structures)
@@ -16,6 +16,7 @@ namespace hillholliday\usermanual\variables;
 use hillholliday\usermanual\UserManual;
 
 use Craft;
+use craft\base\Model;
 
 /**
  * @author    Rob Erskine
@@ -27,17 +28,13 @@ class UserManualVariable
     // Public Methods
     // =========================================================================
 
-    public function getName()
+    public function getName(): string
     {
-        $name = UserManual::$plugin->getName();
-
-        return $name;
+        return UserManual::$plugin->getName();
     }
 
-    public function getSettings()
+    public function getSettings(): ?Model
     {
-        $settings = UserManual::$plugin->getSettings();
-
-        return $settings;
+        return UserManual::$plugin->getSettings();
     }
 }
