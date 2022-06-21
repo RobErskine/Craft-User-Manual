@@ -19,7 +19,9 @@ To install the plugin in your Craft 4 project, follow these instructions.
 
 2. Then tell Composer to load the plugin:
 
-        composer require roberskine/craft-user-manual
+        composer require hillholliday/craft-user-manual
+
+> Wondering why it says hillholliday and not roberskine as the org? This package was originally submitted as hillholliday, and to [preserve the artifacts on Packagist](https://packagist.org/packages/hillholliday/craft-user-manual) we have kept it as hillholliday.
 
 3. In the Control Panel, go to Settings → Plugins and click the “Install” button for usermanual.
 
@@ -38,7 +40,7 @@ To install the plugin in your Craft 3 project, follow these instructions.
 
 2. Then tell Composer to load the plugin:
 
-        composer require roberskine/craft-user-manual:2.1.2
+        composer require hillholliday/craft-user-manual:2.1.2
 
 3. In the Control Panel, go to Settings → Plugins and click the “Install” button for usermanual.
 
