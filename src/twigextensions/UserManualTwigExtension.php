@@ -74,14 +74,14 @@ class UserManualTwigExtension extends AbstractExtension
         $sectionId = $settings->section;
 
         if (count($segments) === 1 && $segment === 'usermanual') {
-            $slug = null;
+            $id = null;
         } else {
-            $slug = $segment;
+            $id = $segment;
         }
 
         $criteria = [
             'sectionId' => $sectionId,
-            'slug' => $slug,
+            'id' => $id,
         ];
 
         Craft::configure($query, $criteria);
