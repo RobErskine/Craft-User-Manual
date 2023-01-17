@@ -162,16 +162,6 @@ class UserManual extends Plugin
         ]];
         foreach (Craft::$app->sections->getAllSections() as $section) {
             $siteSettings = Craft::$app->sections->getSectionSiteSettings($section['id']);
-            $hasUrls = false;
-            foreach ($siteSettings as $siteSetting) {
-                if ($siteSetting->hasUrls) {
-                    $hasUrls = true;
-                }
-            }
-
-            if (!$hasUrls) {
-                continue;
-            }
             $options[] = [
                 'label' => $section['name'],
                 'value' => $section['id'],
