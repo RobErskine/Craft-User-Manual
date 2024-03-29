@@ -10,7 +10,7 @@
 {% macro level(page) %}
   {% if page.level is defined and page.level > 1 %}
     {% for i in 2..page.level %}
-      &ndash;
+      <?xml version="1.0" encoding="UTF-8"?><svg id="a" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M9.67,8.93V2.33c0-1.29-1.04-2.33-2.33-2.33h0c-1.29,0-2.33,1.04-2.33,2.33v11.27c0,1.29,1.04,2.33,2.33,2.33h9.33c1.29,0,2.33-1.04,2.33-2.33h0c0-1.29-1.04-2.33-2.33-2.33h-4.67c-1.29,0-2.33-1.04-2.33-2.33Z" style="fill:#c7d2df; stroke-width:0px;"/></svg>
     {% endfor %}
   {% endif %}
 {% endmacro %}
