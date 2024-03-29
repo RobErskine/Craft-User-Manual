@@ -1,5 +1,10 @@
 # Release Notes for Craft User Manual
 
+## 5.0.0 - 2024-03-29
+- Craft 5 support.
+- Adjusted version number to reflect Craft 5 compatibility.
+- Added icon for sub-menu items in the user manual.
+
 ## 4.0.1 - 2022-06-20
 - Updating name in Composer so it will update on Packagist
 
