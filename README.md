@@ -96,3 +96,26 @@ This plugin was inspired by the team over at [70kft](http://70kft.com/) for thei
 We hope this plugin is useful, and we'd love to hear any suggestions or issues you may have. [@erskinerob](https://twitter.com/erskinerob).
 
 Brought to you by [Rob Erskine](https://twitter.com/erskinerob).
+
+
+## John notes
+
+To install the WIP version of this plugin you need to update your composer.json file in your Craft installtion to include the following:
+
+```json
+{
+    "repositories": [
+        ... other repos ...
+        {
+            "type": "vcs",
+            "url": "https://github.com/johnfmorton/Craft-User-Manual"
+        }
+    ]
+}
+```
+
+Then you can install the plugin with the following command:
+
+```bash
+composer require hillholliday/craft-user-manual:dev-customizatio
+```
