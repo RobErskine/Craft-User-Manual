@@ -182,6 +182,11 @@
   position: static !important;
 }
 
+/* The rule aligns the "sub=menu" svg graphic to the top of the sub-menu items that are multiple lines long */
+#sidebar nav li a {
+  align-items: flex-start;
+}
+
 .pe-user-manual #user-manual-menu{
   margin-top: 185px;
   max-height: calc(100vh - 212px);
