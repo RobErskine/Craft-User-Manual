@@ -182,10 +182,6 @@
   position: static !important;
 }
 
-#content{
-  width: calc(100vw - 570px);
-}
-
 .pe-user-manual #user-manual-menu{
   margin-top: 185px;
   max-height: calc(100vh - 212px);
