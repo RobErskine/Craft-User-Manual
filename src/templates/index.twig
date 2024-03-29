@@ -7,6 +7,14 @@
   ? craft.userManual.settings.section
   : "Homepage" %}
 
+{% macro level(page) %}
+  {% if page.level is defined and page.level > 1 %}
+    {% for i in 2..page.level %}
+      &ndash;
+    {% endfor %}
+  {% endif %}
+{% endmacro %}
+
 {% set title = craft.userManual.name|t %}
 
 {% if craft.userManual.settings.enabledSideBar %}
@@ -19,7 +27,7 @@
           <li id="{{ page.id }}">
             <a {% if active %}class="sel"{% endif %}
               href="{{ url('usermanual/' ~ page.uri) }}#{{ page.id }}">
-              {{page.title}}
+              {{_self.level(page)}}{{page.title}}
             </a>
             {% ifchildren %}
                 <ul>
