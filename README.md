@@ -1,4 +1,6 @@
-# Craft User Manual plugin for Craft CMS 4.x
+> See the [note about installing the WIP version of this plugin from GitHub](#how-to-install-the-wip-version-of-this-plugin-from-github) at the bottom of this README.
+
+# Craft User Manual plugin for Craft CMS 4.x and Craft CMS 5.x
 
 Craft User Manual allows developers (or even content editors) to provide CMS documentation using Craft's built-in sections (singles, channels, or structures) to create a "User Manual" or "Help" section directly in the control panel.
 
@@ -10,7 +12,7 @@ This plugin requires Craft CMS 4.0.0 or later.
 
 ## Installation
 
-### Craft 4
+### Craft 4 and Craft 5
 To install the plugin in your Craft 4 project, follow these instructions.
 
 1. Open your terminal and go to your Craft project:
@@ -98,9 +100,9 @@ We hope this plugin is useful, and we'd love to hear any suggestions or issues y
 Brought to you by [Rob Erskine](https://twitter.com/erskinerob).
 
 
-## John notes
+## How to install the WIP version of this plugin from GitHub
 
-To install the WIP version of this plugin you need to update your composer.json file in your Craft installtion to include the following:
+To install the WIP version of this plugin you need to update your composer.json file in your Craft installation to include the following:
 
 ```json
 {
@@ -114,8 +116,12 @@ To install the WIP version of this plugin you need to update your composer.json 
 }
 ```
 
+This will tell composer to look at the GitHub repo for the plugin instead of Packagist.
+
 Then you can install the plugin with the following command:
 
 ```bash
 composer require hillholliday/craft-user-manual:dev-customization
 ```
+
+Note the `dev-customization` at the end of the command. This is the branch name that you want to install. You can replace this with any branch name that you want to install.
