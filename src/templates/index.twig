@@ -19,7 +19,7 @@
   {% set sidebar %}
     <nav id="user-manual-menu">
       {% set help = craft.entries.sectionId(sectionSelected).all() %}
-      <ul>
+      <ul class="craft-{{ craftMajorVersion() }}">
         {% nav page in help %}
           {% set active = page.slug == craft.app.request.segments|last or loop.first and craft.app.request.segments|last == 'usermanual' %}
           <li id="{{ page.id }}">

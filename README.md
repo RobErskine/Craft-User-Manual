@@ -117,5 +117,5 @@ To install the WIP version of this plugin you need to update your composer.json 
 Then you can install the plugin with the following command:
 
 ```bash
-composer require hillholliday/craft-user-manual:dev-customizatio
+composer require hillholliday/craft-user-manual:dev-customization
 ```

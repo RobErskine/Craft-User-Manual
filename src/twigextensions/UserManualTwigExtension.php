@@ -52,6 +52,7 @@ class UserManualTwigExtension extends AbstractExtension
     {
         return [
             new TwigFunction('getHelpDocument', [$this, 'getHelpDocument']),
+            new TwigFunction('craftMajorVersion', [$this, 'craftMajorVersion']),
         ];
     }
 
@@ -113,5 +114,11 @@ class UserManualTwigExtension extends AbstractExtension
 
             return $output;
         }
+    }
+
+    public function craftMajorVersion()
+    {
+        $version = Craft::$app->getVersion();
+        return $version[0];
     }
 }

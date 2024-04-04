@@ -3,7 +3,9 @@
 ## 5.0.0 - 2024-03-29
 - Craft 5 support.
 - Adjusted version number to reflect Craft 5 compatibility.
-- Added icon for sub-menu items in the user manual.
+- Styling updates for the side for User Manual content. Nested lists now have a different style to make them easier to read.
+- Added conditional messaging to help provide instructions to the developer when the plugin is installed in a fresh installation of Craft CMS no sections or entries yet created.
+- Added craftMajorVersion() twig function to help with styling of nested lists in Craft 4.
 
 ## 4.0.1 - 2022-06-20
 - Updating name in Composer so it will update on Packagist
