@@ -156,27 +156,7 @@ class UserManual extends Plugin
      */
     protected function settingsHtml(): ?string
     {
-        $options = [[
-            'label' => '',
-            'value' => '',
-        ]];
-        foreach (Craft::$app->sections->getAllSections() as $section) {
-            $siteSettings = Craft::$app->sections->getSectionSiteSettings($section['id']);
-            $hasUrls = false;
-            foreach ($siteSettings as $siteSetting) {
-                if ($siteSetting->hasUrls) {
-                    $hasUrls = true;
-                }
-            }
 
-            if (!$hasUrls) {
-                continue;
-            }
-            $options[] = [
-                'label' => $section['name'],
-                'value' => $section['id'],
-            ];
-        }
 
         // Get override settings from config file.
         $overrides = Craft::$app->getConfig()->getConfigFromFile(strtolower($this->handle));
@@ -186,7 +166,7 @@ class UserManual extends Plugin
             [
                 'settings' => $this->getSettings(),
                 'overrides' => array_keys($overrides),
-                'options' => $options,
+                'options' => $this->_getSections(),
                 'siteTemplatesPath' => Craft::$app->getPath()->getSiteTemplatesPath(),
             ]
         );
@@ -227,5 +207,106 @@ class UserManual extends Plugin
     private function _addTwigExtensions()
     {
         Craft::$app->view->twig->addExtension(new UserManualTwigExtension);
+    }
+
+    private function _getSections() {
+
+        // Get the Craft CMS version
+        $version = Craft::$app->getVersion();
+
+        // Check the first character to determine the major version
+        $majorVersion = $version[0];
+
+
+        $options = [];
+
+        if ($majorVersion === '4') {
+            $sections = Craft::$app->sections->getAllSections();
+        } else {
+            $sections = Craft::$app->entries->getAllSections();
+        }
+
+        foreach ($sections as $section) {
+            if ($majorVersion === '4') {
+                $siteSettings = Craft::$app->sections->getSectionSiteSettings($section['id']);
+            } else {
+                $siteSettings = Craft::$app->entries->getSectionSiteSettings($section['id']);
+            }
+            $siteSettings = Craft::$app->sections->getSectionSiteSettings($section['id']);
+            $hasUrls = false;
+            foreach ($siteSettings as $siteSetting) {
+                if ($siteSetting->hasUrls) {
+                    $hasUrls = true;
+                }
+            }
+
+            if (!$hasUrls) {
+                continue;
+            }
+            $options[] = [
+                'label' => $section['name'],
+                'value' => $section['id'],
+            ];
+        }
+
+        // if options is empty, add a default option
+        if (empty($options)) {
+            $options[] = [
+                'label' => '',
+                'value' => '',
+            ];
+        }
+
+        return $options;
+    }
+    private function _getSections() {
+
+        // Get the Craft CMS version
+        $version = Craft::$app->getVersion();
+
+        // Check the first character to determine the major version
+        $majorVersion = $version[0];
+
+
+        $options = [];
+
+        if ($majorVersion === '4') {
+            $sections = Craft::$app->sections->getAllSections();
+        } else {
+            $sections = Craft::$app->entries->getAllSections();
+        }
+
+        foreach ($sections as $section) {
+            if ($majorVersion === '4') {
+                $siteSettings = Craft::$app->sections->getSectionSiteSettings($section['id']);
+            } else {
+                $siteSettings = Craft::$app->entries->getSectionSiteSettings($section['id']);
+            }
+            $siteSettings = Craft::$app->sections->getSectionSiteSettings($section['id']);
+            $hasUrls = false;
+            foreach ($siteSettings as $siteSetting) {
+                if ($siteSetting->hasUrls) {
+                    $hasUrls = true;
+                }
+            }
+
+            if (!$hasUrls) {
+                continue;
+            }
+            $options[] = [
+                'label' => $section['name'],
+                'value' => $section['id'],
+            ];
+        }
+
+        // if options is empty, add a default option
+        if (empty($options)) {
+            $options[] = [
+                'label' => '',
+                'value' => '',
+            ];
+        }
+
+        return $options;
     }
 }
