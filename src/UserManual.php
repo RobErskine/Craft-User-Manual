@@ -61,7 +61,7 @@ class UserManual extends Plugin
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
         self::$plugin = $this;
@@ -122,7 +122,7 @@ class UserManual extends Plugin
             : $pluginName;
     }
 
-    public function registerCpUrlRules(RegisterUrlRulesEvent $event)
+    public function registerCpUrlRules(RegisterUrlRulesEvent $event): void
     {
         $rules = [
             'usermanual/<userManualPath:([a-zéñåA-Z0-9\-\_\/]+)?>' => ['template' => 'usermanual/index'],
@@ -131,7 +131,7 @@ class UserManual extends Plugin
         $event->rules = array_merge($event->rules, $rules);
     }
 
-    public function afterInstallPlugin(PluginEvent $event)
+    public function afterInstallPlugin(PluginEvent $event): void
     {
         $isCpRequest = Craft::$app->getRequest()->isCpRequest;
 
@@ -146,7 +146,7 @@ class UserManual extends Plugin
     /**
      * @inheritdoc
      */
-    protected function createSettingsModel(): ?Model
+    protected function createSettingsModel(): Settings
     {
         return new Settings();
     }
@@ -213,12 +213,13 @@ class UserManual extends Plugin
     // Private Methods
     // =========================================================================
 
-    private function _addTwigExtensions()
+    private function _addTwigExtensions(): void
     {
         Craft::$app->view->twig->addExtension(new UserManualTwigExtension);
     }
 
-    private function getSectionOptions() {
+    private function getSectionOptions(): array
+    {
 
         $sections = $this->getSections();
         $options = [];
