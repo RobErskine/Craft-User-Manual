@@ -232,7 +232,6 @@ class UserManual extends Plugin
             } else {
                 $siteSettings = Craft::$app->entries->getSectionSiteSettings($section['id']);
             }
-            $siteSettings = Craft::$app->sections->getSectionSiteSettings($section['id']);
             $hasUrls = false;
             foreach ($siteSettings as $siteSetting) {
                 if ($siteSetting->hasUrls) {
