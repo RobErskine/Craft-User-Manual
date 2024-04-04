@@ -1,15 +1,21 @@
 
 {% extends "_layouts/cp" %}
-
-{% do view.registerAssetBundle("roberskine\\usermanual\\assetbundles\\usermanual\\UserManualAsset") %}
-
-{% set sectionSelected = (craft.userManual.settings.section is defined)
-  ? craft.userManual.settings.section
-  : "Homepage" %}
-
 {% set title = craft.userManual.name|t %}
 
-{% if craft.userManual.settings.enabledSideBar %}
+{% if craft.userManual.settings.section is defined %}
+
+  {% set sectionSelected = craft.userManual.settings.section %}
+
+  {% if sectionSelected %}
+    {# Does the sectionSelected have any enabled entries #}
+    {% set hasEntries = craft.entries.sectionId(sectionSelected).all() %}
+  {% endif %}
+
+  {% do view.registerAssetBundle("roberskine\\usermanual\\assetbundles\\usermanual\\UserManualAsset") %}
+
+{% endif %}
+
+{% if craft.userManual.settings.enabledSideBar and sectionSelected and hasEntries %}
   {% set sidebar %}
     <nav id="user-manual-menu">
       {% set help = craft.entries.sectionId(sectionSelected).all() %}

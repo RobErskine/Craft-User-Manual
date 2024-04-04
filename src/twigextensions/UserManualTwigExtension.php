@@ -87,10 +87,14 @@ class UserManualTwigExtension extends AbstractExtension
         Craft::configure($query, $criteria);
         $entry = $query->one();
 
-        // If the app has not been set up at all or there are no entires,
-        // redirect to the settings page
-        if (!$sectionId || !$entry) {
-            Craft::$app->controller->redirect(UrlHelper::cpUrl('settings/plugins/usermanual/'))->send();
+        // If the app does not have a section selected, return an error message to let the admin know
+        if (!$sectionId) {
+            return 'There is no section selected for the User Manual pluing. Please check the settings page.';
+        }
+
+        // If there are no entries in the selected section, return an error message to let the admin know
+        if (!$entry) {
+            return 'There are no entries in the selected section for the User Manual Plugin. Entries must be enabled and have a slug to be displayed.';
         } else {
             if ($settings->templateOverride) {
                 // Setting the mode also sets the templatepath to the default for that mode

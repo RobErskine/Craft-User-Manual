@@ -242,12 +242,13 @@ class UserManual extends Plugin
             ];
         }
 
-        // if options is empty, add a default option
-        if (empty($options)) {
-            $options[] = [
+        if (!empty($options)) {
+            $optionToSelectNoSection = [
                 'label' => '',
                 'value' => '',
             ];
+
+            array_unshift($options, $optionToSelectNoSection);
         }
 
         return $options;
