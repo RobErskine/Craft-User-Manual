@@ -1,6 +1,6 @@
 # Release Notes for Craft User Manual
 
-## 5.0.0 - 2024-03-29
+## 5.0.0 - 2024-04-04
 - Craft 5 support.
 - Adjusted version number to reflect Craft 5 compatibility.
 - Styling updates for the side for User Manual content. Nested lists now have a different style to make them easier to read.
