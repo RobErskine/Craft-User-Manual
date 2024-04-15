@@ -90,7 +90,7 @@ class UserManualTwigExtension extends AbstractExtension
 
         // If the app does not have a section selected, return an error message to let the admin know
         if (!$sectionId) {
-            return 'There is no section selected for the User Manual pluing. Please check the settings page.';
+            return 'There is no section selected for the User Manual plugin. Please check the settings page.';
         }
 
         // If there are no entries in the selected section, return an error message to let the admin know
