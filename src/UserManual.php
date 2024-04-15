@@ -61,7 +61,7 @@ class UserManual extends Plugin
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
         self::$plugin = $this;
@@ -122,7 +122,7 @@ class UserManual extends Plugin
             : $pluginName;
     }
 
-    public function registerCpUrlRules(RegisterUrlRulesEvent $event)
+    public function registerCpUrlRules(RegisterUrlRulesEvent $event): void
     {
         $rules = [
             'usermanual/<userManualPath:([a-zéñåA-Z0-9\-\_\/]+)?>' => ['template' => 'usermanual/index'],
@@ -131,7 +131,7 @@ class UserManual extends Plugin
         $event->rules = array_merge($event->rules, $rules);
     }
 
-    public function afterInstallPlugin(PluginEvent $event)
+    public function afterInstallPlugin(PluginEvent $event): void
     {
         $isCpRequest = Craft::$app->getRequest()->isCpRequest;
 
@@ -146,7 +146,7 @@ class UserManual extends Plugin
     /**
      * @inheritdoc
      */
-    protected function createSettingsModel(): ?Model
+    protected function createSettingsModel(): Settings
     {
         return new Settings();
     }
@@ -156,27 +156,6 @@ class UserManual extends Plugin
      */
     protected function settingsHtml(): ?string
     {
-        $options = [[
-            'label' => '',
-            'value' => '',
-        ]];
-        foreach (Craft::$app->sections->getAllSections() as $section) {
-            $siteSettings = Craft::$app->sections->getSectionSiteSettings($section['id']);
-            $hasUrls = false;
-            foreach ($siteSettings as $siteSetting) {
-                if ($siteSetting->hasUrls) {
-                    $hasUrls = true;
-                }
-            }
-
-            if (!$hasUrls) {
-                continue;
-            }
-            $options[] = [
-                'label' => $section['name'],
-                'value' => $section['id'],
-            ];
-        }
 
         // Get override settings from config file.
         $overrides = Craft::$app->getConfig()->getConfigFromFile(strtolower($this->handle));
@@ -186,7 +165,7 @@ class UserManual extends Plugin
             [
                 'settings' => $this->getSettings(),
                 'overrides' => array_keys($overrides),
-                'options' => $options,
+                'options' => $this->getSectionOptions(),
                 'siteTemplatesPath' => Craft::$app->getPath()->getSiteTemplatesPath(),
             ]
         );
@@ -212,7 +191,17 @@ class UserManual extends Plugin
 
         // Allow handles from config
         if (!is_numeric($settings->section)) {
-            $section = Craft::$app->getSections()->getSectionByHandle('homepage');
+            // Get the Craft CMS version
+        $version = Craft::$app->getVersion();
+
+        // Check the first character to determine the major version
+        $majorVersion = $version[0];
+
+            if ($majorVersion === '4') {
+                $section = Craft::$app->getSections()->getSectionByHandle('homepage');
+            } else {
+                $section = Craft::$app->entries->getSectionByHandle('homepage');
+            }
             if ($section) {
                 $settings->section = $section->id;
             }
@@ -224,8 +213,77 @@ class UserManual extends Plugin
     // Private Methods
     // =========================================================================
 
-    private function _addTwigExtensions()
+    private function _addTwigExtensions(): void
     {
         Craft::$app->view->twig->addExtension(new UserManualTwigExtension);
     }
+
+    private function getSectionOptions(): array
+    {
+
+        $sections = $this->getSections();
+        $options = [];
+
+        foreach ($sections as $section) {
+            $siteSettings = $this->getSectionSiteSettings($section['id']);
+            $hasUrls = false;
+            foreach ($siteSettings as $siteSetting) {
+                if ($siteSetting->hasUrls) {
+                    $hasUrls = true;
+                }
+            }
+
+            if (!$hasUrls) {
+                continue;
+            }
+            $options[] = [
+                'label' => $section['name'],
+                'value' => $section['id'],
+            ];
+        }
+
+        if (!empty($options)) {
+            $optionToSelectNoSection = [
+                'label' => '',
+                'value' => '',
+            ];
+
+            array_unshift($options, $optionToSelectNoSection);
+        }
+
+        return $options;
+    }
+
+    // Abstracted Method to get major version
+    private function getMajorVersion(): string
+    {
+        $version = Craft::$app->getVersion();
+        return $version[0]; // Assuming version format is X.Y.Z
+    }
+
+    // Abstracted Method to get sections
+    private function getSections(): array
+    {
+        $majorVersion = $this->getMajorVersion();
+
+        if ($majorVersion === '4') {
+            $sections = Craft::$app->sections->getAllSections();
+        } else {
+            $sections = Craft::$app->entries->getAllSections();
+        }
+
+        return $sections;
+    }
+
+    // Abstracted method to get site settings based on version
+    private function getSectionSiteSettings($sectionId) {
+        $majorVersion = $this->getMajorVersion();
+
+        if ($majorVersion === '4') {
+            return Craft::$app->sections->getSectionSiteSettings($sectionId);
+        }
+
+        return Craft::$app->entries->getSectionSiteSettings($sectionId);
+    }
+
 }

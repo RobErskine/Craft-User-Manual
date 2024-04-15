@@ -1,4 +1,4 @@
-# Craft User Manual plugin for Craft CMS 4.x
+# Craft User Manual plugin for Craft CMS 4.x and Craft CMS 5.x
 
 Craft User Manual allows developers (or even content editors) to provide CMS documentation using Craft's built-in sections (singles, channels, or structures) to create a "User Manual" or "Help" section directly in the control panel.
 
@@ -10,7 +10,7 @@ This plugin requires Craft CMS 4.0.0 or later.
 
 ## Installation
 
-### Craft 4
+### Craft 4 and Craft 5
 To install the plugin in your Craft 4 project, follow these instructions.
 
 1. Open your terminal and go to your Craft project:
@@ -21,7 +21,7 @@ To install the plugin in your Craft 4 project, follow these instructions.
 
         composer require hillholliday/craft-user-manual
 
-> Wondering why it says hillholliday and not roberskine as the org? This package was originally submitted as hillholliday, and to [preserve the artifacts on Packagist](https://packagist.org/packages/hillholliday/craft-user-manual) we have kept it as hillholliday.
+> Wondering why it says `hillholliday` and not `roberskine` as the org? This package was originally submitted as hillholliday, and to [preserve the artifacts on Packagist](https://packagist.org/packages/hillholliday/craft-user-manual) we have kept it as hillholliday.
 
 3. In the Control Panel, go to Settings → Plugins and click the “Install” button for usermanual.
 
@@ -82,6 +82,7 @@ Defaults to true.
 This plugin was inspired by the team over at [70kft](http://70kft.com/) for their work on [Craft-Help](https://github.com/70kft/craft-help). While their plugin is definitely more flexible in terms of writing custom markdown in separate files, we wanted to create something that would make it easier for anyone to edit documentation without making any changes to the server. This works particularly well for larger projects where more than one person (especially non-devs) are writing documentation for how to use the CMS.
 
 ## Releases
+* **5.0.0** - Craft 5 support! Thanks to [John Morton](https://github.com/) and [Dalton Rooney](daltonrooney) for your contributions. 
 * **4.0.0** - Craft 4 support! Thanks to [Chris DuCharme](https://github.com/Chris-DuCharme) for migrating up to Craft 4.
 * **2.1.0** - Merging PRs from [JorgeAnzola](https://github.com/JorgeAnzola) and [sameerast](https://github.com/sameerast)
 * **2.0.3** - Forcing updating to plugin store

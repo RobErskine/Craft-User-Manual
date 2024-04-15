@@ -12,7 +12,14 @@
 
  /*
  * lifted from craft-help from the super smart devs over at 70kft https://github.com/70kft/craft-help
+ *
+ * Updated for version 5 of the plugin to support nested lists in the sidebar
+ *
  */
+
+:root {
+  --user-manual-indent-level: 0.4rem;
+}
 
 #user-manual {
   font-size: 15px;
@@ -182,12 +189,64 @@
   position: static !important;
 }
 
-#content{
-  width: calc(100vw - 570px);
+/* The rule aligns the "sub=menu" svg graphic to the top of the sub-menu items that are multiple lines long */
+#sidebar nav li a {
+  align-items: flex-start;
 }
 
 .pe-user-manual #user-manual-menu{
   margin-top: 185px;
   max-height: calc(100vh - 212px);
   overflow-y: scroll;
+}
+
+/* Indent sub-sections in the side bar */
+
+/* Base styling for all ul elements */
+#user-manual-menu ul {
+  list-style-type: none; /* Removes default list styling */
+  padding-left: 0; /* Resets any default padding */
+  margin-left: 0; /* Resets any default margin */
+}
+
+/* Bullet for nested items needs adjustment for Craft CMS 4 */
+#user-manual-menu ul.craft-4 li a:before {
+  position: relative;
+  top: 3px;
+}
+
+/* First level of nesting */
+#user-manual-menu ul > li > ul > li a:before {
+  text-indent: var(--user-manual-indent-level); /* Indent first level of nested ul */
+}
+
+#user-manual-menu ul > li > ul > li a:before {
+  font-size: 9px;
+  content: '\0025a0'; /* Add a bullet point before each nested li */
+  margin-right: 0.2rem; /* Add a little space between the bullet point and the text */
+  margin-left: -0.25rem;
+}
+
+/* Second level of nesting */
+#user-manual-menu ul > li > ul > li > ul > li a:before {
+  content: '\0025a1';
+  text-indent: calc( var(--user-manual-indent-level) * 2 ); /* Indent second level of nested ul */
+}
+
+/* Third level of nesting */
+#user-manual-menu ul > li > ul > li > ul > li > ul > li a:before {
+   content: '\0025a3';
+  text-indent: calc( var(--user-manual-indent-level) * 3 ); /* Indent third level of nested ul */
+}
+
+/* Fourth level of nesting, and so on... */
+#user-manual-menu ul > li > ul > li > ul > li > ul > li > ul > li a:before {
+  content: '\00229e';
+  text-indent: calc( var(--user-manual-indent-level) * 4 ); /* Indent fourth level of nested ul */
+}
+
+/* Fifth level of nesting, and so on... */
+#user-manual-menu ul > li > ul > li > ul > li > ul > li > ul > li > ul > li a:before {
+  content: '\00229f';
+  text-indent: calc( var(--user-manual-indent-level) * 5 ); /* Indent fifth level of nested ul */
 }

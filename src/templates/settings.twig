@@ -30,6 +30,7 @@
     name: 'pluginNameOverride',
     instructions: "Intuitive, human-readable plugin name for the end user."|t,
     value: settings.pluginNameOverride,
+    placeholder: "User Manual",
     autofocus: true,
     first: true,
     errors: '',
@@ -40,6 +41,9 @@
 
 {% set configOverride = 'section' in overrides %}
 {% set inputMacro = configOverride ? 'textField' : 'selectField' %}
+
+{% if options  %}
+
 {% set opts = {
     label: "User Manual Section"|t,
     id: 'section',
@@ -51,7 +55,14 @@
     disabled: configOverride,
     readonly: configOverride,
 } %}
+
 {{ configOverride ? forms.textField(opts) : forms.selectField(opts) }}
+{% else %}
+<div class="warning">
+  Setup is not complete. Create a section for the User Manual content and return to this page to select it.
+</div>
+
+{% endif %}
 
 {% set instructions %}
 For more control over the output, you may optionally override the default template.<br>
