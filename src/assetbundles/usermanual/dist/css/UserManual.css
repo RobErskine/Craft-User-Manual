@@ -242,11 +242,11 @@
 /* Fourth level of nesting, and so on... */
 #user-manual-menu ul > li > ul > li > ul > li > ul > li > ul > li a:before {
   content: '\00229e';
-  text-indent: calc( var(--user-manual-indent-level) * 4 ); /* Indent third level of nested ul */
+  text-indent: calc( var(--user-manual-indent-level) * 4 ); /* Indent fourth level of nested ul */
 }
 
 /* Fifth level of nesting, and so on... */
 #user-manual-menu ul > li > ul > li > ul > li > ul > li > ul > li > ul > li a:before {
   content: '\00229f';
-  text-indent: calc( var(--user-manual-indent-level) * 5 ); /* Indent third level of nested ul */
+  text-indent: calc( var(--user-manual-indent-level) * 5 ); /* Indent fifth level of nested ul */
 }
