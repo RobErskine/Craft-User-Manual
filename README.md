@@ -82,7 +82,8 @@ Defaults to true.
 This plugin was inspired by the team over at [70kft](http://70kft.com/) for their work on [Craft-Help](https://github.com/70kft/craft-help). While their plugin is definitely more flexible in terms of writing custom markdown in separate files, we wanted to create something that would make it easier for anyone to edit documentation without making any changes to the server. This works particularly well for larger projects where more than one person (especially non-devs) are writing documentation for how to use the CMS.
 
 ## Releases
-* **5.0.0** - Craft 5 support! Thanks to [John Morton](https://github.com/) and [Dalton Rooney](daltonrooney) for your contributions.
+* **5.0.1** - Required "section" config setting to be an integer. Added "enabledSideBar" config setting to enable/disable the sidebar on the manual page. This fix is to help address possible issue in Craft 4 to Craft 5 migration.
+* **5.0.0** - Craft 5 support! Thanks to [John Morton](https://github.com/johnfmorton) and [Dalton Rooney](daltonrooney) for your contributions.
 * **4.0.0** - Craft 4 support! Thanks to [Chris DuCharme](https://github.com/Chris-DuCharme) for migrating up to Craft 4.
 * **2.1.0** - Merging PRs from [JorgeAnzola](https://github.com/JorgeAnzola) and [sameerast](https://github.com/sameerast)
 * **2.0.3** - Forcing updating to plugin store
