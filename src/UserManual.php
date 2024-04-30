@@ -118,8 +118,7 @@ class UserManual extends Plugin
         $pluginNameOverride = $this->getSettings()->pluginNameOverride;
 
         return ($pluginNameOverride)
-            ? $pluginNameOverride
-            : $pluginName;
+            ?: $pluginName;
     }
 
     public function registerCpUrlRules(RegisterUrlRulesEvent $event): void
