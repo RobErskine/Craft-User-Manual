@@ -56,7 +56,7 @@
     readonly: configOverride,
 } %}
 
-{{ configOverride ? forms.textField(opts) : forms.selectField(opts) }}
+{{  forms.selectField(opts)  }}
 {% else %}
 <div class="warning">
   Setup is not complete. Create a section for the User Manual content and return to this page to select it.
