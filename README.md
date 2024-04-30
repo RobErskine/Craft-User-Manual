@@ -51,7 +51,7 @@ To install the plugin in your Craft 3 project, follow these instructions.
 5. Click the **User Manual** link in the CP nav.
 ## Configuration
 
-* All settings may be optionally configured using a [config file](http://buildwithcraft.com/docs/plugins/plugin-settings#config-file). The values, contained in [`config.php`](https://github.com/roberskine/Craft-User-Manual/blob/master/src/config.php), are described below:
+* All settings may be optionally configured using a [config file](https://craftcms.com/docs/5.x/extend/plugin-settings.html#overriding-setting-values). The values, contained in [`config.php`](https://github.com/roberskine/Craft-User-Manual/blob/master/src/config.php), are described below:
 
 <a id="config-settings-pluginNameOverride"></a>
 ### pluginNameOverride
@@ -65,7 +65,7 @@ Path is relative to ../craft/templates/.
 
 <a id="config-settings-section"></a>
 ### section
-Entries in this section must have associated urls.
+Entries in this section must have associated urls. When this value is set from the `usermanua.php` file, it much use the section ID as the value, not the section handle.
 
 ### enabledSideBar
 Enables the sidebar on the manual page
@@ -82,7 +82,7 @@ Defaults to true.
 This plugin was inspired by the team over at [70kft](http://70kft.com/) for their work on [Craft-Help](https://github.com/70kft/craft-help). While their plugin is definitely more flexible in terms of writing custom markdown in separate files, we wanted to create something that would make it easier for anyone to edit documentation without making any changes to the server. This works particularly well for larger projects where more than one person (especially non-devs) are writing documentation for how to use the CMS.
 
 ## Releases
-* **5.0.0** - Craft 5 support! Thanks to [John Morton](https://github.com/) and [Dalton Rooney](daltonrooney) for your contributions. 
+* **5.0.0** - Craft 5 support! Thanks to [John Morton](https://github.com/) and [Dalton Rooney](daltonrooney) for your contributions.
 * **4.0.0** - Craft 4 support! Thanks to [Chris DuCharme](https://github.com/Chris-DuCharme) for migrating up to Craft 4.
 * **2.1.0** - Merging PRs from [JorgeAnzola](https://github.com/JorgeAnzola) and [sameerast](https://github.com/sameerast)
 * **2.0.3** - Forcing updating to plugin store
