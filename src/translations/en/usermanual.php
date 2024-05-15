@@ -18,4 +18,8 @@
  */
 return [
     'usermanual plugin loaded' => 'usermanual plugin loaded',
+    'no section error' => 'There is no section selected for the User Manual plugin. Please check the settings page.',
+    'no section error for config file' => 'There is no valid section set for the User Manual plugin. Please check the config file.',
+    'no entry error' => 'There is no entry in the selected section for the User Manual plugin. Please check the settings page. Entries must be enabled and have a slug to be displayed.',
+    'config file section error' => 'Section must be either an integer or a string.',
 ];
