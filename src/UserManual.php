@@ -188,6 +188,23 @@ class UserManual extends Plugin
             $settings->$settingName = $settingValueOverride ?? $settingValue;
         }
 
+        // if section is a string, convert to int by looking up the section ID
+        if (($settings !== null) && is_string($settings->section)) {
+            $sections = $this->getSections();
+            foreach ($sections as $section) {
+                if ($section['handle'] === $settings->section) {
+                    $settings->section = $section['id'];
+                }
+            }
+        }
+
+        // if section is still a string, set to null
+        // this will prevent an error when an invalid section is assigned
+        // via a string in the config file
+        if (($settings !== null) && is_string($settings->section)) {
+            $settings->section = null;
+        }
+
         return $settings;
     }
 

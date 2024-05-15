@@ -28,6 +28,6 @@
 return [
     'pluginNameOverride' => null,
     'templateOverride' => null,
-    'section' => null, // section ID (int)
+    'section' => null, // section ID (int) or section handle (string)
     'enabledSideBar' => true,
 ];

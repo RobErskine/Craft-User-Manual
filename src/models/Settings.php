@@ -39,9 +39,9 @@ class Settings extends Model
     public ?string $templateOverride = "";
 
     /**
-     * @var integer | null
+     * @var int|string|null
      */
-    public ?int $section = null;
+    public int|string|null $section = null;
 
     /**
      * @var boolean
@@ -60,7 +60,12 @@ class Settings extends Model
     {
         return [
             [['pluginNameOverride', 'templateOverride'], 'string'],
-            ['section', 'number'],
+            ['section', function ($attribute): void
+                {
+                    if (!is_int($this->$attribute) && !is_string($this->$attribute)) {
+                        $this->addError($attribute, Craft::t('usermanual', 'config file section error'));
+                    }
+                }],
             ['enabledSideBar', 'boolean']
         ];
     }
