@@ -6,12 +6,12 @@ Craft User Manual allows developers (or even content editors) to provide CMS doc
 
 ## Requirements
 
-This plugin requires Craft CMS 4.0.0 or later.
+This plugin requires Craft CMS 4.0.0 or later; or Craft CMS 5.0.0 or later.
 
 ## Installation
 
 ### Craft 4 and Craft 5
-To install the plugin in your Craft 4 project, follow these instructions.
+To install the plugin in your Craft 4 or Craft 5 project, follow these instructions.
 
 1. Open your terminal and go to your Craft project:
 

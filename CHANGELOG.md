@@ -1,8 +1,9 @@
 # Release Notes for Craft User Manual
 
-## 5.0.1 - 2024-04-30
- - Required "section" config setting to be an integer. This may be a breaking change if you had the section set in the `config/usermanual.php` file using a string instead of an integer. (This fix is to help address possible issue in Craft 4 to Craft 5 migration.)
+## 5.0.1 - 2024-05-15
+ - Settings model updated with types and validation rules. (This fix is to help address possible issue in Craft 4 to Craft 5 migration.)
  - Added "enabledSideBar" config setting to enable/disable the sidebar on the manual page.
+ - Error messages moved to translations file to allow for easier translation.
 
 ## 5.0.0 - 2024-04-04
 - Craft 5 support.
