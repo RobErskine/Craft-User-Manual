@@ -60,12 +60,7 @@ class Settings extends Model
     {
         return [
             [['pluginNameOverride', 'templateOverride'], 'string'],
-            ['section', function ($attribute): void
-                {
-                    if (!is_int($this->$attribute) && !is_string($this->$attribute)) {
-                        $this->addError($attribute, Craft::t('usermanual', 'config file section error'));
-                    }
-                }],
+            ['section', 'number'],
             ['enabledSideBar', 'boolean']
         ];
     }
