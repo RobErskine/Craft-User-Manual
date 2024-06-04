@@ -1,7 +1,7 @@
 <?php
 
 /**
- * usermanual plugin for Craft CMS 4.x
+ * usermanual plugin for Craft CMS 4.x / 5.x
  *
  * Craft User Manual allows developers (or even content editors) to provide CMS
  * documentation using Craft's built-in sections (singles, channels, or structures)
@@ -28,6 +28,6 @@
 return [
     'pluginNameOverride' => null,
     'templateOverride' => null,
-    'section' => null, // section ID (int) or handle (string)
+    'section' => null, // section ID (int) or section handle (string)
     'enabledSideBar' => true,
 ];

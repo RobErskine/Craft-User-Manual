@@ -1,7 +1,7 @@
 {# @var craft \craft\web\twig\variables\CraftVariable #}
 {#
 /**
- * usermanual plugin for Craft CMS 3.x
+ * usermanual plugin for Craft CMS 4.x / 5.x
  *
  * usermanual Settings.twig
  *
@@ -56,7 +56,7 @@
     readonly: configOverride,
 } %}
 
-{{ configOverride ? forms.textField(opts) : forms.selectField(opts) }}
+{{  forms.selectField(opts)  }}
 {% else %}
 <div class="warning">
   Setup is not complete. Create a section for the User Manual content and return to this page to select it.
@@ -65,8 +65,25 @@
 {% endif %}
 
 {% set instructions %}
-For more control over the output, you may optionally override the default template.<br>
-Path is relative to <code>{{ siteTemplatesPath }}</code>.
+The sidebar in the default User Manual template allows for multiple pages to make up the user manual. If you have a single page, that navigation is not needed and can be toggled off.
+{% endset %}
+{% set configOverride = 'enabledSideBar' in overrides %}
+
+{{ forms.lightSwitchField({
+    label: "Enable Sidebar"|t,
+    id: 'enabledSideBar',
+    name: 'enabledSideBar',
+    instructions: instructions|raw,
+    on: settings.enabledSideBar,
+    onLabel: "Yes"|t,
+    offLabel: "No"|t,
+    warning: configOverride ? configWarning('enabledSideBar'),
+    disabled: configOverride,
+    readonly: configOverride,
+})}}
+
+{% set instructions %}
+For more control over the output, you may optionally override the default template. Path is relative to <code>{{ siteTemplatesPath }}</code>.
 {% endset %}
 {% set configOverride = 'templateOverride' in overrides %}
 
@@ -82,3 +99,5 @@ Path is relative to <code>{{ siteTemplatesPath }}</code>.
     disabled: configOverride,
     readonly: configOverride,
 })}}
+
+

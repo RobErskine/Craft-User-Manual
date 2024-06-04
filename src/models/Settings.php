@@ -1,7 +1,7 @@
 <?php
 
 /**
- * usermanual plugin for Craft CMS 3.x
+ * usermanual plugin for Craft CMS 4.x / 5.x
  *
  * Craft User Manual allows developers (or even content editors) to provide CMS
  * documentation using Craft's built-in sections (singles, channels, or structures)
@@ -29,24 +29,24 @@ class Settings extends Model
     // =========================================================================
 
     /**
-     * @var string
+     * @var string | null
      */
-    public $pluginNameOverride;
+    public ?string $pluginNameOverride = "";
 
     /**
-     * @var string
+     * @var string | null
      */
-    public $templateOverride;
+    public ?string $templateOverride = "";
 
     /**
-     * @var integer
+     * @var int|string|null
      */
-    public $section;
+    public int|string|null $section = null;
 
     /**
      * @var boolean
      */
-    public $enabledSideBar = true;
+    public bool $enabledSideBar = true;
 
 
 

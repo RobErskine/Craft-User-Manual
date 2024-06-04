@@ -1,7 +1,7 @@
 <?php
 
 /**
- * usermanual plugin for Craft CMS 3.x
+ * usermanual plugin for Craft CMS 4.x / 5.x
  *
  * Craft User Manual allows developers (or even content editors) to provide CMS
  * documentation using Craft's built-in sections (singles, channels, or structures)
@@ -118,8 +118,7 @@ class UserManual extends Plugin
         $pluginNameOverride = $this->getSettings()->pluginNameOverride;
 
         return ($pluginNameOverride)
-            ? $pluginNameOverride
-            : $pluginName;
+            ?: $pluginName;
     }
 
     public function registerCpUrlRules(RegisterUrlRulesEvent $event): void
@@ -189,21 +188,13 @@ class UserManual extends Plugin
             $settings->$settingName = $settingValueOverride ?? $settingValue;
         }
 
-        // Allow handles from config
-        if (!is_numeric($settings->section)) {
-            // Get the Craft CMS version
-        $version = Craft::$app->getVersion();
-
-        // Check the first character to determine the major version
-        $majorVersion = $version[0];
-
-            if ($majorVersion === '4') {
-                $section = Craft::$app->getSections()->getSectionByHandle('homepage');
-            } else {
-                $section = Craft::$app->entries->getSectionByHandle('homepage');
-            }
-            if ($section) {
-                $settings->section = $section->id;
+        // if section is a string, convert to int by looking up the section ID
+        if (($settings !== null) && is_string($settings->section)) {
+            $sections = $this->getSections();
+            foreach ($sections as $section) {
+                if ($section['handle'] === $settings->section) {
+                    $settings->section = $section['id'];
+                }
             }
         }
 
@@ -276,7 +267,8 @@ class UserManual extends Plugin
     }
 
     // Abstracted method to get site settings based on version
-    private function getSectionSiteSettings($sectionId) {
+    private function getSectionSiteSettings($sectionId): array
+    {
         $majorVersion = $this->getMajorVersion();
 
         if ($majorVersion === '4') {

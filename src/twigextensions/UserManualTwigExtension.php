@@ -1,7 +1,7 @@
 <?php
 
 /**
- * usermanual plugin for Craft CMS 3.x
+ * usermanual plugin for Craft CMS 4.x / 5.x
  *
  * Craft User Manual allows developers (or even content editors) to provide CMS
  * documentation using Craft's built-in sections (singles, channels, or structures)
@@ -90,12 +90,16 @@ class UserManualTwigExtension extends AbstractExtension
 
         // If the app does not have a section selected, return an error message to let the admin know
         if (!$sectionId) {
-            return 'There is no section selected for the User Manual plugin. Please check the settings page.';
+            // check if the user is using a config file
+            if (Craft::$app->config->getConfigFromFile('usermanual')) {
+                return Craft::t('usermanual', 'no section error for config file');
+            }
+            return Craft::t('usermanual', 'no section error');
         }
 
         // If there are no entries in the selected section, return an error message to let the admin know
         if (!$entry) {
-            return 'There are no entries in the selected section for the User Manual Plugin. Entries must be enabled and have a slug to be displayed.';
+            return Craft::t('usermanual', 'no entry error');
         } else {
             if ($settings->templateOverride) {
                 // Setting the mode also sets the templatepath to the default for that mode
