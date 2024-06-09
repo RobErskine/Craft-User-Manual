@@ -206,7 +206,7 @@ class UserManual extends Plugin
 
     private function _addTwigExtensions(): void
     {
-        Craft::$app->view->twig->addExtension(new UserManualTwigExtension);
+        Craft::$app->view->registerTwigExtension(new UserManualTwigExtension);
     }
 
     private function getSectionOptions(): array
