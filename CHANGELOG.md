@@ -1,5 +1,8 @@
 # Release Notes for Craft User Manual
 
+## 5.0.2 - 2024-08-06
+- Replacing `addExtension` with `Craft::$app->view->registerTwigExtension(new UserManualTwigExtension);`
+
 ## 5.0.1 - 2024-05-15
  - Settings model updated with types and validation rules. (This fix is to help address possible issue in Craft 4 to Craft 5 migration.)
  - Added "enabledSideBar" config setting to enable/disable the sidebar on the manual page.
