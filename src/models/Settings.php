@@ -48,7 +48,10 @@ class Settings extends Model
      */
     public bool $enabledSideBar = true;
 
-
+    /**
+     * @var string
+     */
+    public string $urlSegment = 'usermanual';
 
     // Public Methods
     // =========================================================================
@@ -59,7 +62,7 @@ class Settings extends Model
     public function rules(): array
     {
         return [
-            [['pluginNameOverride', 'templateOverride'], 'string'],
+            [['pluginNameOverride', 'templateOverride', 'urlSegment'], 'string'],
             ['section', 'number'],
             ['enabledSideBar', 'boolean']
         ];

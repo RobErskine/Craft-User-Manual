@@ -30,7 +30,7 @@ use roberskine\usermanual\variables\UserManualVariable;
 use roberskine\usermanual\twigextensions\UserManualTwigExtension;
 
 /**
- * Class Usermanual
+ * Class UserManual
  *
  * @author    Rob Erskine
  * @package   Usermanual
@@ -107,6 +107,16 @@ class UserManual extends Plugin
     }
 
     /**
+     * @inheritdoc
+     */
+    public function getCpNavItem(): ?array
+    {
+        $item = parent::getCpNavItem();
+        $item['url'] = '/admin/' . $this->getSettings()->urlSegment;
+        return $item;
+    }
+
+    /**
      * Returns the user-facing name of the plugin, which can override the name
      * in composer.json
      *
@@ -123,8 +133,10 @@ class UserManual extends Plugin
 
     public function registerCpUrlRules(RegisterUrlRulesEvent $event): void
     {
+        $urlSegment = $this->getSettings()->urlSegment;
         $rules = [
-            'usermanual/<userManualPath:([a-zéñåA-Z0-9\-\_\/]+)?>' => ['template' => 'usermanual/index'],
+            $urlSegment => ['template' => 'usermanual/index'],
+            $urlSegment . '/<userManualPath:([a-zéñåA-Z0-9\-\_\/]+)?>' => ['template' => 'usermanual/index'],
         ];
 
         $event->rules = array_merge($event->rules, $rules);

@@ -39,6 +39,18 @@
     readonly: configOverride,
 })}}
 
+{{ forms.textField({
+    label: "URL Segment"|t('usermanual'),
+    instructions: "The URL segment to use after 'admin' for the user manual (e.g. /admin/usermanual)"|t('usermanual'),
+    default: 'usermanual',
+    required: true,
+    id: 'urlSegment',
+    name: 'urlSegment',
+    value: settings.urlSegment,
+    errors: settings.getErrors('urlSegment'),
+    first: true,
+}) }}
+
 {% set configOverride = 'section' in overrides %}
 {% set inputMacro = configOverride ? 'textField' : 'selectField' %}
 
@@ -99,5 +111,3 @@ For more control over the output, you may optionally override the default templa
     disabled: configOverride,
     readonly: configOverride,
 })}}
-
-

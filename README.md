@@ -83,6 +83,8 @@ This plugin was inspired by the team over at [70kft](http://70kft.com/) for thei
 
 ## Releases
 See CHANGELOG.md for full release history.
+
+* **5.0.4** - Adding in ability to customize URL segment of the user manual documentation section
 * **5.0.3** - Merging PRs from [JorgeAnzola](https://github.com/JorgeAnzola) to remove requirement for User Manual entries to require URLs
 * **5.0.2** - Replacing `addExtension` with Craft Hook 
 * **5.0.1** - Required "section" config setting to be an integer. Added "enabledSideBar" config setting to enable/disable the sidebar on the manual page. This fix is to help address possible issue in Craft 4 to Craft 5 migration.

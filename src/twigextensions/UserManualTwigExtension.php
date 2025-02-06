@@ -73,17 +73,21 @@ class UserManualTwigExtension extends AbstractExtension
         $segments = Craft::$app->request->segments;
         $segment = end($segments);
         $sectionId = $settings->section;
+        $urlSegment = $settings->urlSegment;
 
-        if (count($segments) === 1 && $segment === 'usermanual') {
-            $id = null;
+        if (count($segments) === 1 && $segment === $urlSegment) {
+            // Get the first entry in the section when viewing the base URL
+            $criteria = [
+                'sectionId' => $sectionId,
+                'limit' => 1,
+                'orderBy' => 'dateCreated ASC'
+            ];
         } else {
-            $id = $segment;
+            $criteria = [
+                'sectionId' => $sectionId,
+                'id' => $segment,
+            ];
         }
-
-        $criteria = [
-            'sectionId' => $sectionId,
-            'id' => $id,
-        ];
 
         Craft::configure($query, $criteria);
         $entry = $query->one();
