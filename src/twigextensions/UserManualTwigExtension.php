@@ -13,18 +13,18 @@
 
 namespace roberskine\usermanual\twigextensions;
 
-use roberskine\usermanual\UserManual;
-
 use Craft;
-use craft\elements\Entry;
-use craft\helpers\UrlHelper;
+
 use craft\web\View;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Error\SyntaxError;
-use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 use yii\base\Exception;
+use craft\elements\Entry;
+use Twig\Error\LoaderError;
+use Twig\Error\SyntaxError;
+use craft\helpers\UrlHelper;
+use Twig\Error\RuntimeError;
+use roberskine\usermanual\UserManual;
+use Twig\Extension\AbstractExtension;
 
 
 /**
@@ -75,14 +75,14 @@ class UserManualTwigExtension extends AbstractExtension
         $sectionId = $settings->section;
 
         if (count($segments) === 1 && $segment === 'usermanual') {
-            $slug = null;
+            $id = null;
         } else {
-            $slug = $segment;
+            $id = $segment;
         }
 
         $criteria = [
             'sectionId' => $sectionId,
-            'slug' => $slug,
+            'id' => $id,
         ];
 
         Craft::configure($query, $criteria);

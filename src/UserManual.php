@@ -13,21 +13,21 @@
 
 namespace roberskine\usermanual;
 
-use roberskine\usermanual\variables\UserManualVariable;
-use roberskine\usermanual\twigextensions\UserManualTwigExtension;
-use roberskine\usermanual\models\Settings;
-
 use Craft;
+use yii\base\Event;
 use craft\base\Model;
+
 use craft\base\Plugin;
+use craft\web\UrlManager;
 use craft\services\Plugins;
+use craft\helpers\UrlHelper;
 use craft\events\PluginEvent;
 use craft\events\RegisterUrlRulesEvent;
-use craft\helpers\UrlHelper;
+use roberskine\usermanual\models\Settings;
 use craft\web\twig\variables\CraftVariable;
-use craft\web\UrlManager;
+use roberskine\usermanual\variables\UserManualVariable;
 
-use yii\base\Event;
+use roberskine\usermanual\twigextensions\UserManualTwigExtension;
 
 /**
  * Class Usermanual
@@ -115,7 +115,7 @@ class UserManual extends Plugin
     public function getName(): string
     {
         $pluginName = Craft::t('usermanual', 'User Manual');
-        $pluginNameOverride = $this->getSettings()->pluginNameOverride;
+        $pluginNameOverride = Craft::t('usermanual', $this->getSettings()->pluginNameOverride);
 
         return ($pluginNameOverride)
             ?: $pluginName;
@@ -217,16 +217,6 @@ class UserManual extends Plugin
 
         foreach ($sections as $section) {
             $siteSettings = $this->getSectionSiteSettings($section['id']);
-            $hasUrls = false;
-            foreach ($siteSettings as $siteSetting) {
-                if ($siteSetting->hasUrls) {
-                    $hasUrls = true;
-                }
-            }
-
-            if (!$hasUrls) {
-                continue;
-            }
             $options[] = [
                 'label' => $section['name'],
                 'value' => $section['id'],
@@ -277,5 +267,4 @@ class UserManual extends Plugin
 
         return Craft::$app->entries->getSectionSiteSettings($sectionId);
     }
-
 }
