@@ -1,5 +1,8 @@
 # Release Notes for Craft User Manual
 
+## 5.0.3 - 2025-02-05
+- Removing requirement for documentation to have URLs. [PR #48](https://github.com/RobErskine/Craft-User-Manual/pull/48)
+
 ## 5.0.2 - 2024-08-06
 - Replacing `addExtension` with `Craft::$app->view->registerTwigExtension(new UserManualTwigExtension);`
 
