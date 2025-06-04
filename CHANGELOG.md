@@ -3,6 +3,7 @@
 ## dev-main - 2025-06-04
 - Fixed issue where date created dictated the default entry displayed when user clicked into the User Manual. Previously, the default entry was the entry with the oldest creation date. Now, if the user manual section is defined as a structure, the order as selected in the structure will dictate the initial item displayed.
 - Fixed the logic in the default template to display the help message to the developer when the user manual entry did not contain a field with the handle `body`.
+- Added support for custom `cpTrigger`.
 
 ## 5.0.4 - 2025-02-05
 - Adding in ability to add a custom URL segment to the user manual documentation section.

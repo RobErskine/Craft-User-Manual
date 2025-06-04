@@ -112,7 +112,11 @@ class UserManual extends Plugin
     public function getCpNavItem(): ?array
     {
         $item = parent::getCpNavItem();
-        $item['url'] = '/admin/' . $this->getSettings()->urlSegment;
+
+        // get the cpTrigger from the config
+        $cpTrigger = Craft::$app->getConfig()->getGeneral()->cpTrigger;
+
+        $item['url'] =  $cpTrigger . '/' . $this->getSettings()->urlSegment;
         return $item;
     }
 
