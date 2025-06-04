@@ -79,8 +79,7 @@ class UserManualTwigExtension extends AbstractExtension
             // Get the first entry in the section when viewing the base URL
             $criteria = [
                 'sectionId' => $sectionId,
-                'limit' => 1,
-                'orderBy' => 'dateCreated ASC'
+                'limit' => 1
             ];
         } else {
             $criteria = [
