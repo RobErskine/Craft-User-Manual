@@ -30,4 +30,14 @@ return [
     'templateOverride' => null,
     'section' => null, // section ID (int) or section handle (string)
     'enabledSideBar' => true,
+
+    // --- Markdown sync (since 5.1.0) ---------------------------------------
+    // Folder of `.md` files imported into the section by `craft usermanual/sync`.
+    // Alias-aware (e.g. '@root/help-manual'). Null disables the sync.
+    'managedFolder' => null,
+    // Make markdown-backed pages read-only in the CP (markdown = source of truth).
+    'readOnlyManaged' => false,
+    // Field handle that stores the markdown body on the section's entries.
+    // Defaults to 'body'; set to your field handle if you use a templateOverride.
+    'bodyField' => 'body',
 ];

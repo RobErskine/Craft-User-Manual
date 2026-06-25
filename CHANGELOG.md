@@ -1,5 +1,13 @@
 # Release Notes for Craft User Manual
 
+## 5.1.0 - 2026-06-24
+- Added a one-way **markdown → CP sync**. Author manual pages as `.md` files in a `managedFolder` and run `craft usermanual/sync` to import them into the section (e.g. on deploy or cron). Source of truth lives in version control.
+  - New console command `usermanual/sync` (supports `--dry-run`). Idempotent and change-detecting — only saves pages whose title/body/enabled state actually changed.
+  - Files support optional YAML frontmatter: `title`, `slug`, `parent` (structure nesting), `order`, `enabled`, and `delete` (declarative removal of an obsolete page).
+  - New `Manual` service (`UserManual::$plugin->manual`) exposing `sync()` and `managedSlugs()`.
+- Added optional **read-only enforcement** (`readOnlyManaged`). When on, section entries backed by a markdown file become read-only in the CP (the markdown is canonical); entries with no backing file stay editable, so a CP-maintained page can coexist. The sync bypasses the guard while it runs.
+- New settings: `managedFolder`, `readOnlyManaged`, `bodyField` (config-file overridable). `bodyField` lets the sync target a non-default body field handle when using a `templateOverride`.
+
 ## 5.0.4 - 2025-02-05
 - Adding in ability to add a custom URL segment to the user manual documentation section.
 
