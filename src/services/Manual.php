@@ -142,8 +142,19 @@ class Manual extends Component
             'order' => (int)($front['order'] ?? 0),
             'enabled' => (bool)($front['enabled'] ?? true),
             'delete' => (bool)($front['delete'] ?? false),
-            'body' => ltrim($body, "\r\n"),
+            'body' => $this->normalizeBody($body),
         ];
+    }
+
+    /**
+     * Normalize a markdown body so re-syncs are idempotent: LF line endings, no
+     * leading blank lines (left by the frontmatter block), and no trailing
+     * whitespace — matching how Craft stores a PlainText value.
+     */
+    private function normalizeBody(string $body): string
+    {
+        $body = str_replace(["\r\n", "\r"], "\n", $body);
+        return rtrim(ltrim($body, "\n"));
     }
 
     /**
@@ -225,7 +236,7 @@ class Manual extends Component
 
                 // --- Update in place --------------------------------------------
                 if ($existing !== null) {
-                    $curBody = (string)$existing->getFieldValue($bodyField);
+                    $curBody = $this->normalizeBody((string)$existing->getFieldValue($bodyField));
                     $changed = $existing->title !== $title
                         || $curBody !== $body
                         || $existing->enabled !== $file['enabled'];
