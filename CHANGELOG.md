@@ -1,6 +1,6 @@
 # Release Notes for Craft User Manual
 
-## 5.1.0 - 2026-06-27
+## 5.1.0 - 2026-06-28
 - Added one-way markdown → CP sync: a `usermanual/sync` console command (with `--dry-run`) that imports a `managedFolder` of version-controlled `.md` files into the manual section, plus optional read-only enforcement of synced pages (`readOnlyManaged`) and a configurable `bodyField`. Thanks to [Dan Gaidula](https://github.com/dgaidula). ([PR #55](https://github.com/RobErskine/Craft-User-Manual/pull/55))
 - Fixed the default User Manual entry for Structure sections: the base URL now shows the first entry in structure order, rather than the oldest by creation date. Thanks to [John Morton](https://github.com/johnfmorton). ([PR #52](https://github.com/RobErskine/Craft-User-Manual/pull/52))
 - Fixed the control panel nav link on sites with a custom `cpTrigger` (it no longer hardcodes `/admin/`). Based on [John Morton](https://github.com/johnfmorton)'s report in [PR #52](https://github.com/RobErskine/Craft-User-Manual/pull/52).
