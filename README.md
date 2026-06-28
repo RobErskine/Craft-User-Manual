@@ -126,6 +126,28 @@ _(since 5.1.0)_ Instead of (or in addition to) editing manual pages in the contr
 
 The sync is **one-way** (git → DB) and **idempotent** — it only saves a page when its title, body, or enabled state actually changed, and it never touches section entries that have no backing file (so a CP-maintained page can live alongside the managed ones). Removals are declarative: ship a file with `delete: true` to retire an obsolete page.
 
+### Rendering the markdown as HTML
+
+The sync stores each file's body **verbatim** in the configured `bodyField`, and the default template prints it raw with `{{ entry.body }}`. That means markdown syntax (headings, bold, lists) and blank-line paragraph breaks are **not** converted — the browser shows them as literal text / a single run-on line.
+
+To render the markdown as HTML, point the [`templateOverride`](#config-settings-templateOverride) setting at a site template that runs the body through Craft's [`|md` filter](https://craftcms.com/docs/5.x/reference/twig/filters.html#md). Create `templates/usermanual-markdown.twig` in your project:
+
+```twig
+{% if entry.fieldValues.body ?? false %}
+    {{ entry.body | md }}
+{% else %}
+    <p>This page has no <code>body</code> content yet.</p>
+{% endif %}
+```
+
+…then set it in `config/usermanual.php`:
+
+```php
+'templateOverride' => 'usermanual-markdown',
+```
+
+> The default template is intentionally left as raw output so existing installs whose `body` field already contains rich text / HTML aren't double-processed. Opt into markdown rendering per the override above.
+
 > **Note:** the sync writes through Craft's element API, so the target section's entry type needs an editable **Title** field — entry types that auto-generate their title (via a Title Format) won't have their titles updated by the sync.
 
 ## Some notes
