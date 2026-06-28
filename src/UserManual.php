@@ -15,14 +15,17 @@ namespace roberskine\usermanual;
 
 use Craft;
 use yii\base\Event;
+use yii\base\ModelEvent;
 
 use craft\base\Plugin;
+use craft\elements\Entry;
 use craft\web\UrlManager;
 use craft\services\Plugins;
 use craft\helpers\UrlHelper;
 use craft\events\PluginEvent;
 use craft\events\RegisterUrlRulesEvent;
 use roberskine\usermanual\models\Settings;
+use roberskine\usermanual\services\Manual;
 use craft\web\twig\variables\CraftVariable;
 use roberskine\usermanual\variables\UserManualVariable;
 
@@ -35,6 +38,7 @@ use roberskine\usermanual\twigextensions\UserManualTwigExtension;
  * @package   Usermanual
  * @since     2.0.0
  *
+ * @property-read Manual $manual
  */
 class UserManual extends Plugin
 {
@@ -45,6 +49,14 @@ class UserManual extends Plugin
      * @var UserManual
      */
     public static UserManual $plugin;
+
+    /**
+     * True while the `usermanual/sync` command is writing entries, so the
+     * read-only guard lets the sync's own saves through.
+     *
+     * @var bool
+     */
+    public static bool $isSyncing = false;
 
     // Public Properties
     // =========================================================================
@@ -67,8 +79,22 @@ class UserManual extends Plugin
 
         $this->name = $this->getName();
 
+        // Register the manual (markdown sync) service
+        $this->setComponents([
+            'manual' => Manual::class,
+        ]);
+
+        // Use the console controller namespace for CLI requests so
+        // `craft usermanual/sync` resolves to console\controllers\SyncController.
+        if (Craft::$app->getRequest()->getIsConsoleRequest()) {
+            $this->controllerNamespace = 'roberskine\\usermanual\\console\\controllers';
+        }
+
         // Register twig extensions
         $this->_addTwigExtensions();
+
+        // One-way sync guard: make markdown-backed pages read-only in the CP
+        $this->_registerReadOnlyGuard();
 
         // Register CP routes
         Event::on(
@@ -225,6 +251,63 @@ class UserManual extends Plugin
     private function _addTwigExtensions(): void
     {
         Craft::$app->view->registerTwigExtension(new UserManualTwigExtension);
+    }
+
+    /**
+     * The Manual (markdown sync) service.
+     */
+    public function getManual(): Manual
+    {
+        /** @var Manual $manual */
+        $manual = $this->get('manual');
+        return $manual;
+    }
+
+    /**
+     * When `readOnlyManaged` is on, block CP saves of section entries that are
+     * backed by a markdown file — the markdown is the source of truth. The sync
+     * command bypasses this (via self::$isSyncing). Entries with no backing file
+     * (e.g. a CP-maintained changelog) remain editable.
+     */
+    private function _registerReadOnlyGuard(): void
+    {
+        Event::on(
+            Entry::class,
+            Entry::EVENT_BEFORE_SAVE,
+            function (ModelEvent $event): void {
+                if (self::$isSyncing || !$this->getSettings()->readOnlyManaged) {
+                    return;
+                }
+                if (!Craft::$app->getRequest()->getIsCpRequest()) {
+                    return; // only guard interactive CP saves
+                }
+
+                /** @var Entry $entry */
+                $entry = $event->sender;
+
+                // Ignore drafts/revisions/propagation/bulk-resaves — only the
+                // canonical CP "Save" is blocked.
+                if ($entry->getIsDraft() || $entry->getIsRevision() || $entry->propagating || $entry->resaving) {
+                    return;
+                }
+                if ((int)$entry->sectionId !== (int)$this->getSettings()->section) {
+                    return;
+                }
+                if (!isset($this->getManual()->managedSlugs()[$entry->slug])) {
+                    return; // not a markdown-backed page — leave editable
+                }
+
+                $event->isValid = false;
+                $folder = $this->getSettings()->managedFolder;
+                $entry->addError(
+                    'title',
+                    Craft::t('usermanual', 'This page is managed in source control ({folder}/{slug}.md). Edit the markdown file and re-run “craft usermanual/sync” instead of editing it here.', [
+                        'folder' => $folder,
+                        'slug' => $entry->slug,
+                    ])
+                );
+            }
+        );
     }
 
     private function getSectionOptions(): array
