@@ -14,9 +14,7 @@
 namespace roberskine\usermanual\variables;
 
 use roberskine\usermanual\UserManual;
-
-use Craft;
-use craft\base\Model;
+use roberskine\usermanual\models\Settings;
 
 /**
  * @author    Rob Erskine
@@ -33,7 +31,7 @@ class UserManualVariable
         return UserManual::$plugin->getName();
     }
 
-    public function getSettings(): ?Model
+    public function getSettings(): ?Settings
     {
         return UserManual::$plugin->getSettings();
     }

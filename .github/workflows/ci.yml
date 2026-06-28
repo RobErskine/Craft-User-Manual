@@ -15,9 +15,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # Craft 4 supports PHP 8.0.2–8.2; Craft 5 requires PHP 8.2+.
+        # Craft 5 requires PHP 8.2+. Craft 4 is intentionally NOT in the matrix:
+        # it hard-pins twig/twig ~3.19.0, which modern Composer refuses to install
+        # because that Twig has open security advisories. The plugin still declares
+        # `^4.0` support for existing users, but it can't be analyzed in CI without
+        # installing a known-vulnerable Twig.
         include:
-          - { php: '8.2', craft: '^4.0' }
           - { php: '8.2', craft: '^5.0' }
           - { php: '8.3', craft: '^5.0' }
           - { php: '8.4', craft: '^5.0' }

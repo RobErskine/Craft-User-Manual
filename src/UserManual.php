@@ -15,7 +15,6 @@ namespace roberskine\usermanual;
 
 use Craft;
 use yii\base\Event;
-use craft\base\Model;
 
 use craft\base\Plugin;
 use craft\web\UrlManager;
@@ -185,8 +184,9 @@ class UserManual extends Plugin
     /**
      * @inheritdoc
      */
-    public function getSettings(): ?Model
+    public function getSettings(): ?Settings
     {
+        /** @var Settings|null $settings */
         $settings = parent::getSettings();
         $config = Craft::$app->config->getConfigFromFile('usermanual');
 
