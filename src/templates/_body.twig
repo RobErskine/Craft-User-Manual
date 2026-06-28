@@ -1,7 +1,21 @@
-{# Using bracket notation for an accurate test, due to
-   a Twig bug: http://craftcms.stackexchange.com/questions/2116/twig-is-defined-always-returning-true/2117#2117 #}
+{# Detect a populated `body` field safely.
 
-{% if entry['body'] is defined %}
+   `entry.fieldValues` only contains the fields in THIS entry's field layout, so
+   `entry.fieldValues.body` is set only when the entry's type actually has a
+   `body` field. The `?? false` falls through to the help message when it's
+   absent or empty.
+
+   Why not the obvious alternatives:
+   - `entry['body'] is defined` renders blank when a `body` field exists
+     elsewhere in the project but not on this entry's type (Craft registers
+     every field handle globally).
+   - `entry.body` (and `entry.body ?? false`) throw a Twig RuntimeError under
+     strict_variables (dev mode) when no `body` field exists, because Craft
+     routes the lookup through the element's magic __call. `??` does not
+     suppress an exception thrown inside __call. (Verified against a live
+     Craft 5 install.) #}
+
+{% if entry.fieldValues.body ?? false %}
     {{ entry.body }}
 {% else %}
     <p>

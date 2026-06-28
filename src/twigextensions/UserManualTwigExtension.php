@@ -76,11 +76,13 @@ class UserManualTwigExtension extends AbstractExtension
         $urlSegment = $settings->urlSegment;
 
         if (count($segments) === 1 && $segment === $urlSegment) {
-            // Get the first entry in the section when viewing the base URL
+            // Get the first entry in the section when viewing the base URL.
+            // No explicit orderBy: for a Structure section the query falls back
+            // to structure order (lft), so the entry the editor placed first is
+            // shown first — rather than the oldest by creation date.
             $criteria = [
                 'sectionId' => $sectionId,
                 'limit' => 1,
-                'orderBy' => 'dateCreated ASC'
             ];
         } else {
             $criteria = [

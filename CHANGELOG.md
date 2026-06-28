@@ -1,5 +1,10 @@
 # Release Notes for Craft User Manual
 
+## 5.1.0 - 2026-06-27
+- Fixed the default User Manual entry for Structure sections: the base URL now shows the first entry in structure order, rather than the oldest by creation date. Thanks to [John Morton](https://github.com/johnfmorton). ([PR #52](https://github.com/RobErskine/Craft-User-Manual/pull/52))
+- Fixed the control panel nav link on sites with a custom `cpTrigger` (it no longer hardcodes `/admin/`). Based on [John Morton](https://github.com/johnfmorton)'s report in [PR #52](https://github.com/RobErskine/Craft-User-Manual/pull/52).
+- Fixed the missing-`body`-field help message so it renders correctly under Twig `strict_variables` (dev mode) instead of throwing. Based on [John Morton](https://github.com/johnfmorton)'s change in [PR #52](https://github.com/RobErskine/Craft-User-Manual/pull/52).
+
 ## 5.0.4 - 2025-02-05
 - Adding in ability to add a custom URL segment to the user manual documentation section.
 

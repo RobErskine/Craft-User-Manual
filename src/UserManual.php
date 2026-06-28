@@ -111,7 +111,13 @@ class UserManual extends Plugin
     public function getCpNavItem(): ?array
     {
         $item = parent::getCpNavItem();
-        $item['url'] = '/admin/' . $this->getSettings()->urlSegment;
+
+        // Use the bare URL segment as the nav URL. Craft runs this through
+        // url() when rendering the sidebar, which prepends the configured
+        // cpTrigger automatically — so hardcoding "admin/" (or any trigger)
+        // here would double it (e.g. /admin/admin/usermanual) and break the
+        // link on sites with a custom cpTrigger.
+        $item['url'] = $this->getSettings()->urlSegment;
         return $item;
     }
 
