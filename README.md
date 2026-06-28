@@ -74,6 +74,60 @@ Enables the sidebar on the manual page
 
 Defaults to true.
 
+<a id="config-settings-managedFolder"></a>
+### managedFolder
+_(since 5.1.0)_ Filesystem path to a folder of `.md` files that the `usermanual/sync` command imports into the section. Alias-aware (e.g. `'@root/help-manual'`). Leave `null` to disable the sync. See [Markdown sync](#markdown-sync-git--cp) below.
+
+<a id="config-settings-readOnlyManaged"></a>
+### readOnlyManaged
+_(since 5.1.0)_ When `true`, section entries that are backed by a markdown file in `managedFolder` become **read-only in the CP** — the markdown is the source of truth. Entries with no backing file stay editable. The sync command bypasses this guard while it runs. Defaults to `false`.
+
+<a id="config-settings-bodyField"></a>
+### bodyField
+_(since 5.1.0)_ Handle of the field that stores the markdown body on the section's entries. Defaults to `body`. Set this when you use a `templateOverride` that reads a different field (e.g. `helpContent`).
+
+## Markdown sync (git → CP)
+
+_(since 5.1.0)_ Instead of (or in addition to) editing manual pages in the control panel, you can keep them as version-controlled markdown and push them into the CP with a console command. This keeps documentation diffable, reviewable, and easy to maintain across multiple sites.
+
+1. Point `managedFolder` at a folder of `.md` files (in `config/usermanual.php`):
+
+   ```php
+   return [
+       'section'         => 'secHelp',        // your manual section
+       'managedFolder'   => '@root/help-manual',
+       'bodyField'       => 'helpContent',    // if not the default `body`
+       'readOnlyManaged' => true,             // optional: lock CP editing of synced pages
+   ];
+   ```
+
+2. Author each page as a `.md` file with optional YAML frontmatter:
+
+   ```markdown
+   ---
+   title: Getting Started
+   slug: getting-started      # optional; defaults to the filename (minus an "NN-" order prefix)
+   parent: craft-cms          # optional; slug of the parent page (structure sections)
+   order: 10                  # optional; sort hint, used only when first creating the page
+   enabled: true              # optional; default true
+   delete: false              # optional; true soft-deletes the page with this slug
+   ---
+   # Getting Started
+
+   Markdown body…
+   ```
+
+3. Run the sync (e.g. on deploy, on cron, or by hand):
+
+   ```bash
+   craft usermanual/sync            # import managedFolder/*.md
+   craft usermanual/sync --dry-run  # report what would change, write nothing
+   ```
+
+The sync is **one-way** (git → DB) and **idempotent** — it only saves a page when its title, body, or enabled state actually changed, and it never touches section entries that have no backing file (so a CP-maintained page can live alongside the managed ones). Removals are declarative: ship a file with `delete: true` to retire an obsolete page.
+
+> **Note:** the sync writes through Craft's element API, so the target section's entry type needs an editable **Title** field — entry types that auto-generate their title (via a Title Format) won't have their titles updated by the sync.
+
 ## Some notes
 * The plugin currently only pulls in the `body` field from each entry in the selected section, unless you're using a template override.
 * While the **User Manual** section works best with `Structures`, you can certainly get away with using a one-off `Single`.
