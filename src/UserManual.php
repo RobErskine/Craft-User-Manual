@@ -15,7 +15,6 @@ namespace roberskine\usermanual;
 
 use Craft;
 use yii\base\Event;
-use craft\base\Model;
 
 use craft\base\Plugin;
 use craft\web\UrlManager;
@@ -185,8 +184,9 @@ class UserManual extends Plugin
     /**
      * @inheritdoc
      */
-    public function getSettings(): ?Model
+    public function getSettings(): ?Settings
     {
+        /** @var Settings|null $settings */
         $settings = parent::getSettings();
         $config = Craft::$app->config->getConfigFromFile('usermanual');
 
@@ -250,8 +250,11 @@ class UserManual extends Plugin
     // Abstracted Method to get major version
     private function getMajorVersion(): string
     {
+        // Parse the major version from the X.Y.Z version string. Splitting on
+        // the first dot (rather than taking $version[0]) keeps this correct for
+        // multi-digit major versions, e.g. Craft 10+.
         $version = Craft::$app->getVersion();
-        return $version[0]; // Assuming version format is X.Y.Z
+        return explode('.', $version)[0];
     }
 
     // Abstracted Method to get sections

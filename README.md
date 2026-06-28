@@ -1,5 +1,7 @@
 # Craft User Manual plugin for Craft CMS 4.x and Craft CMS 5.x
 
+[![CI](https://github.com/RobErskine/Craft-User-Manual/actions/workflows/ci.yml/badge.svg)](https://github.com/RobErskine/Craft-User-Manual/actions/workflows/ci.yml)
+
 Craft User Manual allows developers (or even content editors) to provide CMS documentation using Craft's built-in sections (singles, channels, or structures) to create a "User Manual" or "Help" section directly in the control panel.
 
 ![Screenshot](resources/img/screenshot.jpg)
@@ -82,23 +84,8 @@ Defaults to true.
 This plugin was inspired by the team over at [70kft](http://70kft.com/) for their work on [Craft-Help](https://github.com/70kft/craft-help). While their plugin is definitely more flexible in terms of writing custom markdown in separate files, we wanted to create something that would make it easier for anyone to edit documentation without making any changes to the server. This works particularly well for larger projects where more than one person (especially non-devs) are writing documentation for how to use the CMS.
 
 ## Releases
-See CHANGELOG.md for full release history.
 
-* **5.0.4** - Adding in ability to customize URL segment of the user manual documentation section
-* **5.0.3** - Merging PRs from [JorgeAnzola](https://github.com/JorgeAnzola) to remove requirement for User Manual entries to require URLs
-* **5.0.2** - Replacing `addExtension` with Craft Hook 
-* **5.0.1** - Required "section" config setting to be an integer. Added "enabledSideBar" config setting to enable/disable the sidebar on the manual page. This fix is to help address possible issue in Craft 4 to Craft 5 migration.
-* **5.0.0** - Craft 5 support! Thanks to [John Morton](https://github.com/johnfmorton) and [Dalton Rooney](daltonrooney) for your contributions.
-* **4.0.0** - Craft 4 support! Thanks to [Chris DuCharme](https://github.com/Chris-DuCharme) for migrating up to Craft 4.
-* **2.1.0** - Merging PRs from [JorgeAnzola](https://github.com/JorgeAnzola) and [sameerast](https://github.com/sameerast)
-* **2.0.3** - Forcing updating to plugin store
-* **2.0.2** - Merging in [@aaronbushnell](https://github.com/aaronbushnell)'s [fix for incorrect reference to asset bundle](https://github.com/roberskine/Craft-User-Manual/pull/17).
-* **2.0.1** - Merging in [@mgburns](https://github.com/mgburns)' [fix for Craft 3 deprecation warnings](https://github.com/roberskine/Craft-User-Manual/pull/11).
-* **2.0.0** - Merging in [@jcdarwin](https://github.com/jcdarwin) Craft 3 port. [Craft 3 version of Craft User Manual](https://github.com/roberskine/Craft-User-Manual/pull/8).
-* **1.1.1** - Adding in RTL language support.
-* **1.1.0** - Merging in [@timkelty](https://github.com/timkelty)'s work which [includes template overrides, updated error prompts, and other misc improvements](https://github.com/roberskine/Craft-User-Manual/pull/3).
-* **1.0.1** - Adding support for plugin custom icons in Craft 2.5.
-* **1.0.0** - Initital release of Craft User Manual.
+See [CHANGELOG.md](CHANGELOG.md) for full release history.
 
 We hope this plugin is useful, and we'd love to hear any suggestions or issues you may have. [@erskinerob](https://twitter.com/erskinerob).
 
