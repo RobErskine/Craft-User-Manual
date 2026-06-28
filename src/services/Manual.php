@@ -1,7 +1,7 @@
 <?php
 
 /**
- * usermanual plugin for Craft CMS 4.x / 5.x
+ * usermanual plugin for Craft CMS 6.x
  *
  * @link      https://twitter.com/erskinerob
  * @copyright Copyright (c) 2018 Rob Erskine
@@ -183,13 +183,7 @@ class Manual extends Component
             return $summary;
         }
 
-        // Craft 5 merged section management into the Entries service; Craft 4
-        // still exposes it on the Sections service. Branch so the sync works on
-        // both (matching the version branching elsewhere in the plugin).
-        $isCraft5 = version_compare(Craft::$app->getVersion(), '5.0.0', '>=');
-        $section = $isCraft5
-            ? Craft::$app->entries->getSectionById($sectionId)
-            : Craft::$app->sections->getSectionById($sectionId);
+        $section = Craft::$app->entries->getSectionById($sectionId);
         if ($section === null) {
             $summary['errors'][] = "Configured section {$sectionId} not found.";
             return $summary;
@@ -281,13 +275,7 @@ class Manual extends Component
                 $entry->title = $title;
                 $entry->enabled = $file['enabled'];
                 if ($authorId) {
-                    // Craft 5 supports multiple authors via setAuthorId();
-                    // Craft 4 uses the single authorId property.
-                    if ($isCraft5) {
-                        $entry->setAuthorId($authorId);
-                    } else {
-                        $entry->authorId = $authorId;
-                    }
+                    $entry->setAuthorId($authorId);
                 }
                 $entry->setFieldValue($bodyField, $body);
                 if (Craft::$app->getElements()->saveElement($entry)) {

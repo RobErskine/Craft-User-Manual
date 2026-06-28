@@ -1,7 +1,7 @@
 <?php
 
 /**
- * usermanual plugin for Craft CMS 4.x / 5.x
+ * usermanual plugin for Craft CMS 6.x
  *
  * Craft User Manual allows developers (or even content editors) to provide CMS
  * documentation using Craft's built-in sections (singles, channels, or structures)
@@ -336,39 +336,13 @@ class UserManual extends Plugin
         return $options;
     }
 
-    // Abstracted Method to get major version
-    private function getMajorVersion(): string
-    {
-        // Parse the major version from the X.Y.Z version string. Splitting on
-        // the first dot (rather than taking $version[0]) keeps this correct for
-        // multi-digit major versions, e.g. Craft 10+.
-        $version = Craft::$app->getVersion();
-        return explode('.', $version)[0];
-    }
-
-    // Abstracted Method to get sections
     private function getSections(): array
     {
-        $majorVersion = $this->getMajorVersion();
-
-        if ($majorVersion === '4') {
-            $sections = Craft::$app->sections->getAllSections();
-        } else {
-            $sections = Craft::$app->entries->getAllSections();
-        }
-
-        return $sections;
+        return Craft::$app->entries->getAllSections();
     }
 
-    // Abstracted method to get site settings based on version
     private function getSectionSiteSettings($sectionId): array
     {
-        $majorVersion = $this->getMajorVersion();
-
-        if ($majorVersion === '4') {
-            return Craft::$app->sections->getSectionSiteSettings($sectionId);
-        }
-
         return Craft::$app->entries->getSectionSiteSettings($sectionId);
     }
 }

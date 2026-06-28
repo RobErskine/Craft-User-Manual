@@ -1,5 +1,14 @@
 # Release Notes for Craft User Manual
 
+## 6.0.0-beta.1 - 2026-06-28
+### Added
+- Craft 6 support via the `craftcms/yii2-adapter` compatibility shim.
+
+### Changed
+- Minimum PHP version bumped to `^8.5` (required by Craft 6).
+- Dropped Craft 4 and 5 support on this branch; existing Craft 4/5 users should remain on the `5.x` line.
+- Collapsed Craft 4/5 version-branching logic — the plugin now calls the Craft 5+/6 `entries` service exclusively.
+
 ## 5.1.0 - 2026-06-28
 - Added one-way markdown → CP sync: a `usermanual/sync` console command (with `--dry-run`) that imports a `managedFolder` of version-controlled `.md` files into the manual section, plus optional read-only enforcement of synced pages (`readOnlyManaged`) and a configurable `bodyField`. Thanks to [Dan Gaidula](https://github.com/dgaidula). ([PR #55](https://github.com/RobErskine/Craft-User-Manual/pull/55))
 - Fixed the default User Manual entry for Structure sections: the base URL now shows the first entry in structure order, rather than the oldest by creation date. Thanks to [John Morton](https://github.com/johnfmorton). ([PR #52](https://github.com/RobErskine/Craft-User-Manual/pull/52))
