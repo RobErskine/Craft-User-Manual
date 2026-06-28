@@ -5,6 +5,10 @@
 
 # COMPOSER
 /vendor
+# This is a library/plugin — consumers never use our lock file, and committing
+# it only created stale-lock churn (and dependabot lock-bump noise). Security is
+# enforced by `composer audit` in CI against the composer.json constraints.
+composer.lock
 
 # BUILD FILES
 /bower_components/*

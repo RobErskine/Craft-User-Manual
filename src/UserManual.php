@@ -250,8 +250,11 @@ class UserManual extends Plugin
     // Abstracted Method to get major version
     private function getMajorVersion(): string
     {
+        // Parse the major version from the X.Y.Z version string. Splitting on
+        // the first dot (rather than taking $version[0]) keeps this correct for
+        // multi-digit major versions, e.g. Craft 10+.
         $version = Craft::$app->getVersion();
-        return $version[0]; // Assuming version format is X.Y.Z
+        return explode('.', $version)[0];
     }
 
     // Abstracted Method to get sections

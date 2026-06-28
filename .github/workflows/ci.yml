@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  analysis:
+    name: PHP ${{ matrix.php }} / Craft ${{ matrix.craft }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Craft 4 supports PHP 8.0.2–8.2; Craft 5 requires PHP 8.2+.
+        include:
+          - { php: '8.2', craft: '^4.0' }
+          - { php: '8.2', craft: '^5.0' }
+          - { php: '8.3', craft: '^5.0' }
+          - { php: '8.4', craft: '^5.0' }
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: intl, dom, mbstring, pdo, pdo_mysql, gd, bcmath, json
+          coverage: none
+
+      - name: Validate composer.json
+        run: composer validate --strict
+
+      - name: Install dependencies (Craft ${{ matrix.craft }})
+        run: composer require "craftcms/cms:${{ matrix.craft }}" --no-interaction --no-progress --update-with-all-dependencies
+
+      - name: Security audit
+        run: composer audit --no-interaction
+
+      - name: PHPStan
+        run: composer phpstan
+
+      - name: Rector (dry-run)
+        run: composer rector
