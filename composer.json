@@ -10,7 +10,7 @@
         "usermanual"
     ],
     "support": {
-        "docs": "https://github.com/roberskine/Craft-User-Manual/blob/master/README.md",
+        "docs": "https://github.com/roberskine/Craft-User-Manual/blob/main/README.md",
         "issues": "https://github.com/roberskine/Craft-User-Manual/issues"
     },
     "license": "MIT",
@@ -36,7 +36,7 @@
         "handle": "usermanual",
         "hasCpSettings": true,
         "hasCpSection": true,
-        "changelogUrl": "https://raw.githubusercontent.com/roberskine/Craft-User-Manual/master/CHANGELOG.md",
+        "changelogUrl": "https://raw.githubusercontent.com/roberskine/Craft-User-Manual/6.x/CHANGELOG.md",
         "class": "roberskine\\usermanual\\UserManual"
     },
     "minimum-stability": "dev",
