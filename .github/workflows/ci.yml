@@ -39,8 +39,16 @@ jobs:
       - name: Security audit
         run: composer audit --no-interaction
 
+      # PHPStan and Rector are non-blocking on the Craft 6 line for now:
+      # craftcms/phpstan and craftcms/rector (dev-main) are not yet Craft 6
+      # compatible — their bundled config references vendor/craftcms/cms/src/Craft.php,
+      # which the Craft 6 Laravel rewrite relocated (namespace is now CraftCms\Cms\).
+      # Re-enable as hard gates (drop continue-on-error) once those tools support
+      # Craft 6. Tracked alongside adding SetList::CRAFT_CMS_60 in rector.php.
       - name: PHPStan
         run: composer phpstan
+        continue-on-error: true
 
       - name: Rector (dry-run)
         run: composer rector
+        continue-on-error: true
